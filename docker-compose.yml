@@ -1,0 +1,32 @@
+web:
+    build: ./
+    hostname: webhost
+    restart: always
+    volumes:
+        - /usr/src/app/public/files
+    links:
+        - "dbhost"
+    ports:
+        - "3000:3000"
+    environment:
+        - RDB_HOST=dbhost
+        - RDB_PORT=28015
+        - RDB_DB=ichat
+#################
+dbhost:
+    image: rethinkdb:latest
+    hostname: dbhost
+    restart: always
+    volumes_from:
+        - storage-db
+    environment:
+        - RDB_HOST=dbhost
+        - RDB_PORT=28015
+        - RDB_DB=ichat
+    ports:
+        - "8080:8080"
+#################
+storage-db: #debian:jessie
+    image: debian:jessie
+    volumes:
+        - /data
