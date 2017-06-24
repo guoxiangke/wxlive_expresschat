@@ -71,7 +71,8 @@ router.get('/:id', function(req, res, next) {
       if(!socket.username) return;
       //DB:xxx离开了聊天室
       var msg = {
-        messageType: "room_logout",
+        fromType: "room_logout",
+        messageType: "text",
         message: socket.username+" 离开了聊天室！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
         NickName: socket.username, //todo 使用uid！ from
         room_id : roomID,
@@ -142,7 +143,8 @@ router.get('/:id', function(req, res, next) {
       }
 	  //DB username加入了聊天室！2017-12-11
       var msg = {
-        messageType: "room_login",
+        fromType: "room_login",
+        messageType: "text",
         message: socket.username+" 进入了聊天室！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
         NickName: socket.username, //todo 使用uid！ from
         room_id : roomId, //room_id
@@ -185,6 +187,7 @@ router.get('/:id', function(req, res, next) {
       //DB
       var msg = {
         messageType: "text",
+        fromTypeType: "liveroom",
         message: data,
         NickName: socket.username, //todo 使用uid！ from
         room_id : roomId, //room_id
