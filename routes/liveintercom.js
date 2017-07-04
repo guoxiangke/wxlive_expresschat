@@ -73,9 +73,9 @@ router.get('/:id', function(req, res, next) {
       var msg = {
         fromType: "room_logout",
         messageType: "text",
-        message: socket.username+" 离开了聊天室！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
+        message: socket.username+" 离开了直播间",//login 进入房间 logout 离开房间 正常消息 message @消息 at
         NickName: socket.username, //todo 使用uid！ from
-        room_id : roomID,
+        room_id : roomId,
         groupName: "直播吧",
         timestamp: Date.now() / 1000 | 0
       }
@@ -107,12 +107,12 @@ router.get('/:id', function(req, res, next) {
     // 一个socket是否可以同时存在于几个分组，等效于一个用户会同时在几个聊天室活跃，答案是”可以“，socket.join()添加进去就可以了。官方提供了订阅模式的示例：
     socket.on('subscribe', function(data) {
         socket.join(roomId);
-        debug('访客进入聊天室：'+data.room,users);
+        debug('访客进入直播间：'+data.room,users);
     })
 
     socket.on('unsubscribe', function(data) {
         socket.leave(roomId);
-        debug('访客离开聊天室：'+data.room,users);
+        debug('访客离开直播间：'+data.room,users);
      })
 
     socket.on('user join', function (data,callback) {
@@ -133,7 +133,7 @@ router.get('/:id', function(req, res, next) {
 
       socket.username = data.username;
       socket.room = data.room;
-      users.push(data);//{"username" : username, "room" : roomID}
+      users.push(data);//{"username" : username, "room" : roomId}
       // users.push({"username" : data.username, "room" : roomId});////TODO:所有的live用户！！！
       var roomuser =[];
       for(var i=0;i<users.length;i++){
@@ -145,7 +145,7 @@ router.get('/:id', function(req, res, next) {
       var msg = {
         fromType: "room_login",
         messageType: "text",
-        message: socket.username+" 进入了聊天室！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
+        message: socket.username+" 进入了直播间！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
         NickName: socket.username, //todo 使用uid！ from
         room_id : roomId, //room_id
         groupName: "直播吧",
@@ -187,7 +187,7 @@ router.get('/:id', function(req, res, next) {
       //DB
       var msg = {
         messageType: "text",
-        fromTypeType: "liveroom",
+        fromType: "liveroom",
         message: data,
         NickName: socket.username, //todo 使用uid！ from
         room_id : roomId, //room_id

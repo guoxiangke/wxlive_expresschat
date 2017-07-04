@@ -86,12 +86,12 @@ $( document ).ready(function() {
       $inputMessage.val('').focus();
       addLocalMessage(new_message);
       $('.intercom-conversation-body-parts').animate({
-          scrollTop: $(".intercom-conversation-body-parts").offset().top
-      }, 2000);
+          scrollTop: $(".intercom-conversation-body-parts")[0].scrollHeight
+      }, 900);
     }
  }
   function addLocalMessage(new_message){
-    $chat.append('<div class="intercom-conversation-part intercom-conversation-part-user intercom-conversation-part-last"><div class="intercom-comment-container intercom-comment-container-user"><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph"><p>'+new_message+'</p></div></div></div></div><span><div class="intercom-conversation-part-metadata">Just now. Not seen yet</div></span></div>');
+    $chat.append('<div class="intercom-conversation-part intercom-conversation-part-user intercom-conversation-part-last"><div class="intercom-comment-container intercom-comment-container-user"><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph"><p>'+new_message+'</p></div></div></div></div><span><div class="intercom-conversation-part-metadata">已发送</div></span></div>');
   }
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message',function(data){
