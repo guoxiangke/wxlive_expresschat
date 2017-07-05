@@ -41,7 +41,7 @@ $( document ).ready(function() {
   // Sets the client's username
   function setUsername (name=false) {
     username = name?name:cleanInput($inputUsername.val().trim());
-    $('#message').prop('disabled', false).attr('placeholder','Write a reply...');
+    $('#message').prop('disabled', false).attr('placeholder','键入文字');
     // Tell the server your username
     // var nav ={
     //   'appCodeName':navigator.appCodeName,
@@ -85,9 +85,7 @@ $( document ).ready(function() {
       socket.emit('send message', new_message);
       $inputMessage.val('').focus();
       addLocalMessage(new_message);
-      $('.intercom-conversation-body-parts').animate({
-          scrollTop: $(".intercom-conversation-body-parts")[0].scrollHeight
-      }, 900);
+      scrollBottom();
     }
  }
   function addLocalMessage(new_message){
@@ -104,6 +102,29 @@ $( document ).ready(function() {
   function addChatMessage (data, options) {
     // $chat.append('<div class="well"><strong>'+data.username+':</strong>'+data.message+'</div>');
     $chat.append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/831182/square_128/Kate_Pic-1479735964.jpg?1479735964"></div></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+data.message+'</div></div></div></div><span></span></div>');
+    var height_of_mainwindow = $(window).height()- $('.intercom-conversation-body-profile').height() - 55;
+    if($('.intercom-conversation-part:last').offset().top-height_of_mainwindow<600){//+N*50
+      scrollBottom();
+    }else{
+      new_message_promotion();
+    }
+  }
+
+  function new_message_promotion(){
+    $('#player').append('<div id="new_promotion">您有新消息，点击查看</div>');
+    $('#new_promotion').bind('click',function(){
+      $(this).fadeOut('fast');
+      scrollBottom();
+    });
+    setTimeout(function(){
+      $('#new_promotion').fadeOut('slow',function(){$(this).remove()});
+    }, 5000);
+  }
+
+  function scrollBottom(){
+      $('.intercom-conversation-body-parts').animate({
+          scrollTop: $(".intercom-conversation-body-parts")[0].scrollHeight
+      }, 900);
   }
 
   //get all users
@@ -147,20 +168,20 @@ $( document ).ready(function() {
 
   // Whenever the server emits 'typing', show the typing message
   socket.on('typing', function (data) {
-    console.log('typing');
+    console.log('typing',data);
     addChatTyping(data);
   });
 
   // Whenever the server emits 'stop typing', kill the typing message
   socket.on('stop typing', function (data) {
-    console.log('stop typing');
+    console.log('stop typing',data);
     removeChatTyping(data);
   });
 
  // Adds the visual chat typing message
   function addChatTyping (data) {
     data.typing = true;
-    data.message = ' is typing';
+    data.message = ' 正在输入...';
 
     // var typingClass = data.typing ? 'typing' : '';
     // var $messageDiv = $('<li class="message"/>')
@@ -173,6 +194,7 @@ $( document ).ready(function() {
   }
   // Removes the visual chat typing message
   function removeChatTyping (data) {
+    console.log('removeChatTyping');
     getTypingMessages(data).fadeOut(function () {
       $(this).remove();
     });
@@ -194,6 +216,7 @@ $( document ).ready(function() {
       }
       // When the client hits ENTER on their keyboard
       if (event.which === 13) {
+          event.preventDefault();
           sendMessage();
           socket.emit('stop typing');
           typing = false;
@@ -204,10 +227,4 @@ $( document ).ready(function() {
   // Keyboard events end
   //TODO: reconnect with cookie name:
   //http://stackoverflow.com/questions/4432271/node-js-and-socket-io-how-to-reconnect-as-soon-as-disconnect-happens
-
-   // Log a message
-  function log (message, options) {
-    console.log('LOG:'+message);
-  }
-
 });

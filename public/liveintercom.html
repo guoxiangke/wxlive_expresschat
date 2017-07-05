@@ -38,6 +38,7 @@
       </div>
         <div id="player">
           <iframe frameborder="0" width="100%" height="auto" src="https://ly.yongbuzhixi.com/lss/index.html?vid=classroom" allowfullscreen></iframe>
+          
         </div>
         <style>
           #intercom-container .intercom-admin-profile-full{
@@ -46,6 +47,19 @@
            #intercom-container iframe{
             width: 100%;
            }
+          #intercom-container #new_promotion {
+            padding: 5px;
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+          }
+          #intercom-container #online_users{
+            float: none;
+            max-width: 100%;
+          }
+          #intercom-container .d-center{
+            text-align: center;
+          }
         </style>
       </div>
     </div>
@@ -57,50 +71,67 @@
                 </div>
                 <div class="intercom-conversation-body-parts" style="top: 268px; bottom: 228px;">
                   <div class="intercom-conversation-body-parts-wrapper">
-                    <div class="intercom-conversation-parts" id="chat" style="transform: translateY(0px);">
+                    <div class="intercom-conversation-parts" id="chat" style="transform: translateY(-18px);">
+                      
 
-<div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
-  <div class="intercom-notification-channels-card">
-    <div class="intercom-notification-channels-card-admin-avatar">
-      <div class="intercom-avatar"><img src="http://wx.qlogo.cn/mmopen/50HcP4UOeLWI7mH6BLL0RQNBBJNclX738qVZ1b9CIRGK8eBKzV5RghHRq2vWekUt6EiaPLq9lSlHibWLEmt7nLl2tIZS4iabwtN/0"></div>
-    </div>
-    <div class="intercom-notification-channels intercom-notification-channels-last-part">
-      <div class="intercom-notification-channels-options">
-        <div class="intercom-notification-channels-title-container">
-          <div class="intercom-notification-channels-title">输入姓名加入直播间</div>
-          <div class="intercom-notification-channels-title-success"></div>
-        </div>
-        <div class="intercom-notification-channels-input-collector">
-          <form action="" id="userForm">
-            <div class="intercom-notification-channels-input-container">
-              <div class="intercom-notification-channels-input ">
-                <label class="intercom-notification-channels-placeholder">
-                  <!-- react-text: 119 -->姓名＋手机4位尾号<!-- /react-text -->
-                </label>
-                <input type="text" id="username" name="intercom-channel-collector" value="" autocomplete="off">
-              </div>
-              <div class="intercom-notification-channels-input-submit-container">
-                <div class="intercom-notification-channels-input-submit-button">
-                  <div class="intercom-notification-channels-input-submit-icon"></div>
-                  <div class="intercom-notification-channels-input-valid-icon"></div>
-                </div>
-              </div>
-            </div>
-            <span id="last_span"></span>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <span></span>
-</div>
+                      <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-grouped">
+                        <div id="online_users" class="intercom-comment-container intercom-comment-container-admin">
+                          <div class="intercom-comment">
+                            <div class="intercom-blocks">
+
+                              <div class="intercom-team-profile-full-avatar intercom-index-0"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/320755/square_128/Profile_Pic-1462433474-1462485564.jpg?1462485564"></div></div>
+                              <div class="intercom-team-profile-full-avatar intercom-index-1"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/725453/square_128/18834469_10203276465910029_625882982_n-1496213620.jpg?1496213620"></div></div>
+                              <div class="intercom-team-profile-full-avatar intercom-index-2"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/1148856/square_128/face2-1491876848.png?1491876848"></div></div>
+ 
+                            </div>
+                            <div class="intercom-block intercom-block-paragraph d-center" style="padding-top: 15px;">已有21人在等待你的加入.</div>
+                          </div>
+                        </div>
+                        <span></span>
+                      </div>
+
+                      <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
+                        <div class="intercom-notification-channels-card">
+                          <div class="intercom-notification-channels-card-admin-avatar">
+                            <div class="intercom-avatar"><img src="http://wx.qlogo.cn/mmopen/50HcP4UOeLWI7mH6BLL0RQNBBJNclX738qVZ1b9CIRGK8eBKzV5RghHRq2vWekUt6EiaPLq9lSlHibWLEmt7nLl2tIZS4iabwtN/0"></div>
+                          </div>
+                          <div class="intercom-notification-channels intercom-notification-channels-last-part">
+                            <div class="intercom-notification-channels-options">
+                              <div class="intercom-notification-channels-title-container">
+                                <div class="intercom-notification-channels-title">请输入姓名加入直播间</div>
+                                <div class="intercom-notification-channels-title-success"></div>
+                              </div>
+                              <div class="intercom-notification-channels-input-collector">
+                                <form action="" id="userForm">
+                                  <div class="intercom-notification-channels-input-container">
+                                    <div class="intercom-notification-channels-input ">
+                                      <label class="intercom-notification-channels-placeholder">
+                                        <!-- react-text: 119 -->姓名＋手机4位尾号 例：小永5900<!-- /react-text -->
+                                      </label>
+                                      <input type="text" id="username" name="intercom-channel-collector" value="" autocomplete="off">
+                                    </div>
+                                    <div class="intercom-notification-channels-input-submit-container">
+                                      <div class="intercom-notification-channels-input-submit-button">
+                                        <div class="intercom-notification-channels-input-submit-icon"></div>
+                                        <div class="intercom-notification-channels-input-valid-icon"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <span id="last_span"></span>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <span></span>
+                      </div>
 
                         <div class="intercom-conversation-part intercom-conversation-part-user">
                           <div class="intercom-comment-container intercom-comment-container-user">
                             <div class="intercom-comment">
                               <div class="intercom-blocks">
                                 <div class="intercom-block intercom-block-paragraph">
-                                  <p>hi,test</p>
+                                  <p>你好，欢迎您加入直播间。</p>
                                 </div>
                               </div>
                             </div>
@@ -168,7 +199,10 @@
                 <pre><!-- react-text: 41 --><!-- /react-text --><br></pre>
                 <textarea  id="message" placeholder="Write a reply..."></textarea>
                 <span></span>
-                <span id='emojis' style="visibility: hidden;"></span>
+                <span></span>
+                <div class="intercom-composer-buttons">
+                  <button class="intercom-composer-send-button"></button>
+                </div>
               </form>
             </div>
           </div>
@@ -246,32 +280,23 @@
 	        });
 
 
-        // var winHeight = $(window).height(); //获取window的高度
 
-	      // $( '.intercom-conversation-body-parts').scroll(function() {
-	      //   var pox = $('.intercom-conversation-body-parts').scrollTop();
-	      //   if(pox <= 19){
-	      //       $('.intercom-conversation-profile').addClass('intercom-conversation-profile-expanded');
-	      //       $('.intercom-admin-profile').removeClass('intercom-team-profile-collapsed');
-	      //       $('.intercom-admin-profile-compact').attr('style', 'opacity: 0;');
+	      $( '.intercom-conversation-body-parts').scroll(function() {
+	        var pox = $('.intercom-conversation-body-parts').scrollTop();
+	        if(pox <= 30){
 
-	      //       $('.intercom-admin-profile-full-title-and-location').attr('style', 'opacity: 1;');
+	            $('.intercom-conversation-body-snapped').attr('style', 'transform: translateY(0px);');
+              $('.intercom-conversation-body-parts').attr('style', 'top: 268px; bottom: -50px;'); 
 
+               $('#intercom-container .intercom-admin-profile-full').attr('style', 'padding: 30px;');
+	        }else{
+	            $('.intercom-conversation-body-snapped').attr('style', 'transform: translateY(-50px);');
+	            $('.intercom-conversation-body-parts').attr('style', 'top: 200px; bottom: -50px;');
+              
+              $('#intercom-container .intercom-admin-profile-full').attr('style', 'padding: 0;padding-left: 0;');
 
-	      //       $('.intercom-conversation-body-snapped').attr('style', 'transform: translateY(0px); bottom: -99px;');
-	      //       $('.intercom-conversation-body-parts').attr('style', 'top: 250px; bottom: 70px;');
-	      //   }else{
-	      //       $('.intercom-conversation-profile').removeClass('intercom-conversation-profile-expanded');
-	      //       $('.intercom-admin-profile').addClass('intercom-team-profile-collapsed');
-	      //       $('.intercom-admin-profile-compact').attr('style', 'opacity: 1;');
-
-	      //       $('.intercom-admin-profile-full-title-and-location').attr('style', 'opacity: 0;');
-
-	      //       $('.intercom-conversation-body-snapped').attr('style', 'transform: translateY(-100px); bottom: -99px;');
-	      //       $('.intercom-conversation-body-parts').attr('style', 'top: 250px; bottom: -30px;');
-
-	      //   }
-	      // });
+	        }
+	      });
 
 
 	      $('.intercom-notification-channels-option').click(function(){
