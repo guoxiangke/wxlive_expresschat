@@ -254,6 +254,13 @@ $( document ).ready(function() {
   });
 
   // Keyboard events end
+
+  $(document).on('focus click', 'input',  function(e){
+    if(this.id =='username'){//e.target.id,
+      $('.intercom-conversation-body-parts').scrollTop(150);
+      // $('#messageForm').hide();
+    }
+  });
   //TODO: reconnect with cookie name:
   //http://stackoverflow.com/questions/4432271/node-js-and-socket-io-how-to-reconnect-as-soon-as-disconnect-happens
 });
