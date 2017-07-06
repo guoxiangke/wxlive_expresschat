@@ -50,7 +50,6 @@ router.get('/:id', function(req, res, next) {
   // res.send('respond with a rooms');
   //http://stackoverflow.com/questions/25463423/res-sendfile-absolute-path
   res.sendFile('liveintercom.html', { root: path.join(__dirname, '../public') });
-
   //https://github.com/onedesign/express-socketio-tutorial
   var io = res.io;
   var roomId = req.params.id;
@@ -61,6 +60,12 @@ router.get('/:id', function(req, res, next) {
   io.of(namespace).once('connection', function(socket){
     connections.push(socket);
     debug('Connected: %s sockets connected',connections.length);
+
+    db.findMessages(30, function (err, messages) {
+      if (!err && messages.length > 0) {
+        socket.emit('history', messages);
+      }
+    });
 
 
     //Disconnect
@@ -117,18 +122,6 @@ router.get('/:id', function(req, res, next) {
 
     socket.on('user join', function (data,callback) {
       callback(true);
-      // //====DB user insert==
-      // var uid = is_db_exsits(data.username);
-      // if(!uid){
-      //   // var user = new User;
-      //   // console.log('_id',user._id);
-      //   // user.show_name = data.username;//TODO 重名？？
-      //   // user.ip = data.ip;
-      //   // user.navigator = data.navigator;
-      //   // //TODO other fields!
-      //   // user.save();
-      // }
-      // //room.update();
       // //====DB user insert==
 
       socket.username = data.username;

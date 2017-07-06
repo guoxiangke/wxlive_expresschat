@@ -23,6 +23,7 @@ app.use(function(req, res, next){
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use('/bower_components/', express.static(__dirname + '/bower_components/'));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

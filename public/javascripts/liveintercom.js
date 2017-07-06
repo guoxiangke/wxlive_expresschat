@@ -9,7 +9,19 @@ $( document ).ready(function() {
     socket.emit('unsubscribe',{"room" : roomID});
     return '确定离开吗？';
   });
+  // //get messages history!
+  // var history_url = window.location.href + '/history';
+  // var history = [];
+  // $.ajax({url: history_url, success: function(result){
+  //     // $("#div1").html(result);
+  //     history = result;
+  //     console.log(result);
+  // }});
 
+  socket.on('history',function(data){
+    console.log('get history',data);
+    addChatHistory(data);//add remote message!
+  });
   var $messageForm  = $('#messageForm');
   var $message  = $('#message');
   var $chat  = $('#chat');
@@ -91,6 +103,16 @@ $( document ).ready(function() {
   function addLocalMessage(new_message){
     $chat.append('<div class="intercom-conversation-part intercom-conversation-part-user intercom-conversation-part-last"><div class="intercom-comment-container intercom-comment-container-user"><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph"><p>'+new_message+'</p></div></div></div></div><span><div class="intercom-conversation-part-metadata">已发送</div></span></div>');
   }
+
+
+  function addChatHistory(data){
+    for (var i = data.length - 1; i >= 0; i--) {
+      var val = data[i];
+      $chat.append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><paper-avatar class="paper-avatar-mini paper-avatar-history" icon="social:person-outline"  label="'+val.NickName.charAt(0).toUpperCase()+'"></paper-avatar></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+val.message+'</div></div></div></div><span></span></div>');
+    }
+  }
+
+
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message',function(data){
     console.log('new message',data);
@@ -101,7 +123,7 @@ $( document ).ready(function() {
   // Adds the visual chat message to the message list
   function addChatMessage (data, options) {
     // $chat.append('<div class="well"><strong>'+data.username+':</strong>'+data.message+'</div>');
-    $chat.append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/831182/square_128/Kate_Pic-1479735964.jpg?1479735964"></div></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+data.message+'</div></div></div></div><span></span></div>');
+    $chat.append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><paper-avatar class="paper-avatar-mini" icon="social:person-outline"  label="'+data.username.charAt(0).toUpperCase()+'"></paper-avatar></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+data.message+'</div></div></div></div><span><div class="intercom-conversation-part-metadata">'+data.username+'</div></span></div>');
     var height_of_mainwindow = $(window).height()- $('.intercom-conversation-body-profile').height() - 55;
     if($('.intercom-conversation-part:last').offset().top-height_of_mainwindow<600){//+N*50
       scrollBottom();
@@ -220,6 +242,13 @@ $( document ).ready(function() {
           sendMessage();
           socket.emit('stop typing');
           typing = false;
+      }
+    }else{
+      if (event.which === 13) {
+          event.preventDefault();
+          if($inputUsername.val().length !== 0){
+            $('.intercom-notification-channels-input-submit-container').trigger('click');
+          }
       }
     }
   });
