@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 RUN npm install -g bower
-RUN /usr/local/bin/bower install bower.json --allow-root --force-latest
+RUN /usr/local/bin/bower install paper-avatar --allow-root --force-latest
 
 # Bundle app source
 COPY . /usr/src/app
