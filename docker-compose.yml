@@ -5,16 +5,14 @@ nginx-proxy:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-web:
+ichat:
     build: ./
-    hostname: webhost
+    hostname: ichat
     restart: always
     volumes:
         - /usr/src/app/public/files
     links:
         - "dbhost"
-    ports:
-        - "3000"
     environment:
         - VIRTUAL_HOST=ichat.yongbuzhixi.com
         - RDB_HOST=dbhost
@@ -27,13 +25,11 @@ dbhost:
     restart: always
     volumes_from:
         - storage-db
+    ports:
+        - "80"
+    command: ["rethinkdb", "--bind", "all", "--http-port", "80"] ##--no-http-admin 
     environment:
         - VIRTUAL_HOST=rethinkdb.yongbuzhixi.com
-        - RDB_HOST=dbhost
-        - RDB_PORT=28015
-        - RDB_DB=ichat
-    ports:
-        - "8080"
 #################
 storage-db: #debian:jessie
     image: debian:jessie
