@@ -5,10 +5,6 @@ $( document ).ready(function() {
   var roomID = pathArray[2];
   // socket.emit('subscribe');
   socket.emit('subscribe',{"room" : roomID});
-  $(window).on('beforeunload', function(){
-    socket.emit('unsubscribe',{"room" : roomID});
-    return '确定离开吗？';
-  });
   // //get messages history!
   // var history_url = window.location.href + '/history';
   // var history = [];
@@ -19,9 +15,17 @@ $( document ).ready(function() {
   // }});
 
   socket.on('history',function(data){
-    console.log('get history',data);
     addChatHistory(data);//add remote message!
+      var c_name = getCookie('username2');
+      //ok!!!
+      if(c_name){
+        $('#user_named_join_promo').hide();
+        user_named_join_promo(c_name);
+        setUsername(c_name);
+      }
   });
+
+
   var $messageForm  = $('#messageForm');
   var $message  = $('#message');
   var $chat  = $('#chat');
@@ -45,6 +49,15 @@ $( document ).ready(function() {
   if(username){
       setUsername (username);
   }
+
+  $(window).on('beforeunload', function(){
+    if(username){
+      socket.emit('unsubscribe',{"room" : roomID, 'username':username});
+    }else{
+      socket.emit('unsubscribe',{"room" : roomID});
+    }
+    return '确定离开吗？';
+  });
   //use login page input username
   $userForm.submit(function(e){
     e.preventDefault();
@@ -54,6 +67,7 @@ $( document ).ready(function() {
   function setUsername (name=false) {
     username = name?name:cleanInput($inputUsername.val().trim());
     $('#message').prop('disabled', false).attr('placeholder','键入文字');
+    setCookie('username',username,365);
     // Tell the server your username
     // var nav ={
     //   'appCodeName':navigator.appCodeName,
@@ -108,7 +122,7 @@ $( document ).ready(function() {
   function addChatHistory(data){
     for (var i = data.length - 1; i >= 0; i--) {
       var val = data[i];
-      $chat.append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><paper-avatar class="paper-avatar-mini paper-avatar-history" icon="social:person-outline"  label="'+val.NickName.charAt(0).toUpperCase()+'"></paper-avatar></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+val.message+'</div></div></div></div><span></span></div>');
+      $chat.append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><paper-avatar class="paper-avatar-mini paper-avatar-history" icon="social:person-outline"  label="'+val.NickName.charAt(0).toUpperCase()+'"></paper-avatar></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+val.message+'</div></div></div></div><span><div class="intercom-conversation-part-metadata">'+val.NickName+'</div></span></div>');
     }
   }
 
@@ -140,23 +154,18 @@ $( document ).ready(function() {
     });
     setTimeout(function(){
       $('#new_promotion').fadeOut('slow',function(){$(this).remove()});
-    }, 5000);
-  }
-
-  function scrollBottom(){
-      $('.intercom-conversation-body-parts').animate({
-          scrollTop: $(".intercom-conversation-body-parts")[0].scrollHeight
-      }, 900);
+    }, 7000);
   }
 
   //get all users
-  socket.on('users update', function(data){
-    console.log('users update');
-    // var html = '';
-    // for (var i = data.length - 1; i >= 0; i--) {
-    //   html += '<li class="list-group-item">'+ data[i] +'</li>';
-    // }
-    // $users.html(html);
+  socket.on('users init', function(data){
+    // console.log('users update');
+    $('#users_count').text(data.length);
+    var html = '';
+    for (var i = data.length - 1; i >= 0; i--) {
+      html += '<li class="list-group-item userli" data-username='+ data[i].username +'>'+ data[i].username +'</li>';
+    }
+    $users.html(html);
   });
 
 
@@ -204,15 +213,8 @@ $( document ).ready(function() {
   function addChatTyping (data) {
     data.typing = true;
     data.message = ' 正在输入...';
+    $chat.append('<div class="intercom-typing-admin typing" data-username="'+data.username+'"><div class="intercom-typing-admin-avatar"><div class="intercom-avatar"><paper-avatar class="paper-avatar-mini" icon="social:person-outline"  label="'+data.username.charAt(0).toUpperCase()+'"></paper-avatar></div></div><div class="intercom-typing-admin-bubble"><div class="intercom-typing-admin-dot-1"></div><div class="intercom-typing-admin-dot-2"></div><div class="intercom-typing-admin-dot-3"></div></div></div>');
 
-    // var typingClass = data.typing ? 'typing' : '';
-    // var $messageDiv = $('<li class="message"/>')
-    // .data('username', data.username)
-    // .addClass(typingClass).text(data.username+data.message);
-
-    // $typingDiv.html($messageDiv);
-
-    $chat.append('<div class="intercom-typing-admin typing" data-username="'+data.username+'"><div class="intercom-typing-admin-avatar"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/831182/square_128/Kate_Pic-1479735964.jpg?1479735964"></div></div><div class="intercom-typing-admin-bubble"><div class="intercom-typing-admin-dot-1"></div><div class="intercom-typing-admin-dot-2"></div><div class="intercom-typing-admin-dot-3"></div></div></div>');
   }
   // Removes the visual chat typing message
   function removeChatTyping (data) {
@@ -224,8 +226,8 @@ $( document ).ready(function() {
 
   // Gets the 'X is typing' messages of a user
   function getTypingMessages (data) {
-    return $('.typing').filter(function (i) {
-      return $(this).data('username') === data.username;
+    return $('.typing').filter(function () {
+      return $(this).data('username').toString() === data.username.toString();
     });
   }
 
@@ -255,12 +257,8 @@ $( document ).ready(function() {
 
   // Keyboard events end
 
-  $(document).on('focus click', 'input',  function(e){
-    if(this.id =='username'){//e.target.id,
-      $('.intercom-conversation-body-parts').scrollTop(150);
-      // $('#messageForm').hide();
-    }
-  });
   //TODO: reconnect with cookie name:
   //http://stackoverflow.com/questions/4432271/node-js-and-socket-io-how-to-reconnect-as-soon-as-disconnect-happens
+
+
 });

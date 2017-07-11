@@ -113,11 +113,20 @@ router.get('/:id', function(req, res, next) {
     socket.on('subscribe', function(data) {
         socket.join(roomId);
         debug('访客进入直播间：'+data.room,users);
+        io.of(namespace).in(roomId).emit('users init',users);
     })
 
-    socket.on('unsubscribe', function(data) {
+    socket.on('unsubscribe', function(data) { 
         socket.leave(roomId);
-        debug('访客离开直播间：'+data.room,users);
+        var newusers=[];
+        if(data.username){
+          for (var i = users.length - 1; i >= 0; i--) {
+            if(users[i].username == data.username) continue;
+              newusers.push(users[i]);
+          }
+          users = newusers;
+        }
+          debug('访客离开直播间：'+ users);
      })
 
     socket.on('user join', function (data,callback) {

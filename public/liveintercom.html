@@ -45,13 +45,14 @@
         <style>
           #intercom-container .intercom-admin-profile-full{
             padding-left: 30px;
+            padding: 10px 30px;
           }
            #intercom-container iframe{
             width: 100%;
            }
           #intercom-container #new_promotion {
             padding: 5px;
-            font-size: 12px;
+            font-size: 14px;
             text-align: center;
             color: #fff;
           }
@@ -59,8 +60,8 @@
             float: none;
             max-width: 100%;
           }
-          #intercom-container .d-center{
-            text-align: center;
+          #intercom-container .intercom-conversation-part-admin .intercom-conversation-part-metadata {
+              padding-left: 45px;
           }
         </style>
         <style is="custom-style" include="demo-pages-shared-styles">
@@ -103,13 +104,13 @@
                               <div class="intercom-team-profile-full-avatar intercom-index-2"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/1148856/square_128/face2-1491876848.png?1491876848"></div></div>
  
                             </div>
-                            <div class="intercom-block intercom-block-paragraph d-center" style="padding-top: 15px;">已有21人在等待你的加入.</div>
+                            <div id="users" style="display: none;"></div>
                           </div>
                         </div>
-                        <span></span>
+                        <span><div class="intercom-conversation-part-metadata"><div class="intercom-conversation-part-metadata-save-state">已有<span id="users_count">21</span>人在等待你的加入.</div></div></span>
                       </div>
 
-                      <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
+                      <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last" id="user_named_join_promo">
                         <div class="intercom-notification-channels-card">
                           <div class="intercom-notification-channels-card-admin-avatar">
                             <div class="intercom-avatar"><img src="http://wx.qlogo.cn/mmopen/50HcP4UOeLWI7mH6BLL0RQNBBJNclX738qVZ1b9CIRGK8eBKzV5RghHRq2vWekUt6EiaPLq9lSlHibWLEmt7nLl2tIZS4iabwtN/0"></div>
@@ -144,70 +145,13 @@
                         <span></span>
                       </div>
 
-                        <div class="intercom-conversation-part intercom-conversation-part-user">
-                          <div class="intercom-comment-container intercom-comment-container-user">
-                            <div class="intercom-comment">
-                              <div class="intercom-blocks">
-                                <div class="intercom-block intercom-block-paragraph">
-                                  <p>你好，欢迎您加入直播间。</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <span>
-                            <div class="intercom-conversation-part-metadata">13m ago. Not seen yet</div>
-                          </span>
-                        </div>
-
-                        <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-grouped">
-                          <div class="intercom-comment-container intercom-comment-container-admin">
-                            <div class="intercom-comment">
-                              <div class="intercom-blocks">
-                                <div class="intercom-block intercom-block-paragraph">95%的用户在10分钟内得到了客服回复哦！.</div>
-                              </div>
-                            </div>
-                          </div>
-                          <span></span>
-                        </div>
-
-
-<div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
-  <div class="intercom-comment-container intercom-comment-container-admin">
-    <div class="intercom-comment-container-admin-avatar">
-      <div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/831182/square_128/Kate_Pic-1479735964.jpg?1479735964"></div>
-    </div>
-    <div class="intercom-comment">
-      <div class="intercom-blocks">
-        <div class="intercom-block intercom-block-paragraph">Hello <span title="wave">👋</span>&nbsp;</div>
-        <div class="intercom-block intercom-block-paragraph">How can I help? <span title="smiley">😃</span>&nbsp;</div>
-      </div>
-    </div>
-  </div>
-  <span>
-    <div class="intercom-conversation-part-metadata">31m ago</div>
-  </span>
-</div>
+                      
 
 
 <div class="intercom-conversation-parts-date-divider">February 14</div>
 
-<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin">
-  <div class="intercom-comment-container-admin-avatar">
-    <!-- <div class="intercom-avatar"><i class="avatar avatar-color-95">d</i><span>dale2017</span></div> -->
-    <paper-avatar mini icon="social:person-outline"></paper-avatar>
-  </div>
-<div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">Can I help?&nbsp;</div></div></div></div><span></span></div>
-
-<div class="intercom-conversation-part intercom-conversation-part-user intercom-conversation-part-grouped"><div class="intercom-comment-container intercom-comment-container-user"><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph"><p>just test,. thanks</p></div></div></div></div><span></span></div>
-
-<div class="intercom-conversation-part intercom-conversation-part-user intercom-conversation-part-last"><div class="intercom-comment-container intercom-comment-container-user"><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph"><p>test</p></div></div></div></div><span><div class="intercom-conversation-part-metadata">Just now. Not seen yet</div></span></div>
 
 
-<div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/831182/square_128/Kate_Pic-1479735964.jpg?1479735964"></div></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">ohhhh, why is that?</div></div></div></div><span><div class="intercom-conversation-part-metadata">Just now</div></span></div>
-
-<div class="intercom-conversation-parts-date-divider">February 15</div>
-
-<div class="intercom-conversation-part intercom-conversation-part-user intercom-conversation-part-last"><div class="intercom-comment-container intercom-comment-container-user"><div class="intercom-comment-single"><div class="intercom-sticker-native">👍</div></div></div><span><div class="intercom-conversation-part-metadata"><div class="intercom-conversation-part-metadata-save-state">Just now. Not seen yet</div></div></span></div>
 
                     </div>
                   </div>
@@ -252,7 +196,51 @@
     <script src="/javascripts/socket.io-1.2.0.js"></script>
     <script src="/javascripts/jquery-1.11.1.js"></script>
     <script>
+      function scrollBottom(){
+          $('.intercom-conversation-body-parts').animate({
+              scrollTop: $(".intercom-conversation-body-parts")[0].scrollHeight
+          }, 900);
+      }
+
+      function user_named_join_promo(tmp_username){
+        var message = '在直播讨论中显示名字：<span style="color:#1F8CEB">'+tmp_username+'</span><p style="font-size: 12px;">微信添加小永微助手，回复［微直播］即可在微信群中讨论，微信群中的讨论将同步显示在本直播间。</p>';
+        $('#chat').append('<div class="intercom-conversation-part intercom-conversation-part-admin"><div class="intercom-comment-container intercom-comment-container-admin"><div class="intercom-comment-container-admin-avatar"><div class="intercom-avatar"><img src="http://wx.qlogo.cn/mmopen/50HcP4UOeLWI7mH6BLL0RQNBBJNclX738qVZ1b9CIRGK8eBKzV5RghHRq2vWekUt6EiaPLq9lSlHibWLEmt7nLl2tIZS4iabwtN/0"></div></div><div class="intercom-comment"><div class="intercom-blocks"><div class="intercom-block intercom-block-paragraph">'+message+'</div></div></div></div><span><div class="intercom-conversation-part-metadata">小永微助手</div></span></div>');
+          scrollBottom();
+      }
+      function setCookie(c_name,value,expiredays)
+      {
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate()+expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+      }
+      function getCookie(c_name)
+      {
+        if (document.cookie.length>0)
+          {
+          c_start=document.cookie.indexOf(c_name + "=")
+          if (c_start!=-1)
+            { 
+            c_start=c_start + c_name.length+1 
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+            return unescape(document.cookie.substring(c_start,c_end))
+            } 
+          }
+        return ""
+      }
+    </script>
+    <script src="/javascripts/liveintercom.js"></script>
+    <script>
 	    $( document ).ready(function(){
+
+        $(document).on('focus click', 'input',  function(e){
+          if(this.id =='username'){//e.target.id,
+            $('.intercom-conversation-body-parts').scrollTop(150);
+            // $('#messageForm').hide();
+          }
+        });
+
 	      $('.intercom-notification-channels-placeholder').on('click',function(){
 	        $(this).hide();
 	        $('#username').focus();
@@ -282,11 +270,26 @@
 	      });
 	      //valid email or phonenumer!
 	      $('.intercom-notification-channels-input-submit-container').click(function(){
-	          if(1){
-	            $tmp_username = $('#username').val();
+            $tmp_username = $('#username').val();
+            var matchs = $tmp_username.match(/\d+$/);
+            if($tmp_username.length<6 || matchs.length!=1 || matchs[0].length>4 ){
+                $('.intercom-notification-channels-input').addClass('intercom-notification-channels-input-error');
+                $('.intercom-notification-channels-input-container').next('span').html('<div class="intercom-notification-channels-error"><p class="intercom-notification-channels-error-text">输入格式不对哦！姓名＋生日，如小永0325</p></div>');
+            }else{
+              var same_name = 0;
+              $('.userli').each(function(){
+                if($(this).data('username').toString() === $tmp_username.toString()){
+                  same_name = 1;
+                }
+              });
+              if(same_name){
+                $('.intercom-notification-channels-input').addClass('intercom-notification-channels-input-error');
+                $('.intercom-notification-channels-input-container').next('span').html('<div class="intercom-notification-channels-error"><p class="intercom-notification-channels-error-text">这么巧，有重名啊！换个昵称试试！～</p></div>');
+                return;
+              }
+
+
 	            $('#userForm').submit();
-	            $html = '在直播讨论中显示名字：<span style="color:#1F8CEB">'+$tmp_username+'</span><p style="font-size: 12px;">微信添加小永微助手，回复［微直播］即可在微信群中讨论，微信群中的讨论将同步显示在本直播间。</p>';
-	            $('.intercom-notification-channels-title-success').html($html);
 
 	            $('.intercom-notification-channels-input-container').next('span').html('');
 	            $('.intercom-notification-channels').addClass('intercom-notification-channels-success');
@@ -296,22 +299,19 @@
 	            $('.intercom-notification-channels-input-submit-container').slideUp();
 	            $('.intercom-notification-channels-placeholder').slideUp().html('');
 	            $('.intercom-notification-channels-option-container').slideUp();
-	          }else{
-	              $('.intercom-notification-channels-input').addClass('intercom-notification-channels-input-error');
-	              $('.intercom-notification-channels-input-container').next('span').html('<div class="intercom-notification-channels-error"><p class="intercom-notification-channels-error-text">That country code doesn\'t look quite right</p></div>');
+              user_named_join_promo($tmp_username);
+              $(this).parents('.intercom-conversation-part').hide();
 	          }
 	        });
 
-
-
 	      $( '.intercom-conversation-body-parts').scroll(function() {
 	        var pox = $('.intercom-conversation-body-parts').scrollTop();
-	        if(pox <= 30){
+	        if(pox <= 100){
 
 	            $('.intercom-conversation-body-snapped').attr('style', 'transform: translateY(0px);');
               $('.intercom-conversation-body-parts').attr('style', 'top: 268px; bottom: -50px;'); 
 
-               $('#intercom-container .intercom-admin-profile-full').attr('style', 'padding: 30px;');
+               $('#intercom-container .intercom-admin-profile-full').attr('style', 'padding: 10px;30px;');
 	        }else{
 	            $('.intercom-conversation-body-snapped').attr('style', 'transform: translateY(-50px);');
 	            $('.intercom-conversation-body-parts').attr('style', 'top: 200px; bottom: -50px;');
@@ -345,7 +345,6 @@
 	    });
     </script>
 
-    <script src="/javascripts/liveintercom.js"></script>
 
   </body>
 </html>
