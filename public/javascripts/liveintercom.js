@@ -16,7 +16,7 @@ $( document ).ready(function() {
 
   socket.on('history',function(data){
     addChatHistory(data);//add remote message!
-      var c_name = getCookie('username2');
+      var c_name = getCookie('username');
       //ok!!!
       if(c_name){
         $('#user_named_join_promo').hide();
