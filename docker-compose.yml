@@ -1,3 +1,10 @@
+nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
 web:
     build: ./
     hostname: webhost
@@ -7,8 +14,9 @@ web:
     links:
         - "dbhost"
     ports:
-        - "3000:3000"
+        - "3000"
     environment:
+        - VIRTUAL_HOST=ichat.yongbuzhixi.com
         - RDB_HOST=dbhost
         - RDB_PORT=28015
         - RDB_DB=ichat
@@ -20,11 +28,12 @@ dbhost:
     volumes_from:
         - storage-db
     environment:
+        - VIRTUAL_HOST=rethinkdb.yongbuzhixi.com
         - RDB_HOST=dbhost
         - RDB_PORT=28015
         - RDB_DB=ichat
     ports:
-        - "8080:8080"
+        - "8080"
 #################
 storage-db: #debian:jessie
     image: debian:jessie
