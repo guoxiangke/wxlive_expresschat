@@ -8,6 +8,10 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN cnpm install -g bower
+#install git for bower!
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+	&& apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 RUN /usr/local/bin/bower install paper-avatar --allow-root --force-latest
 RUN cnpm install
 
