@@ -162,10 +162,13 @@ $( document ).ready(function() {
     // console.log('users update');
     $('#users_count').text(data.length);
     var html = '';
+    var avatar_html='';
     for (var i = data.length - 1; i >= 0; i--) {
       html += '<li class="list-group-item userli" data-username='+ data[i].username +'>'+ data[i].username +'</li>';
+      avatar_html +='<div class="intercom-team-profile-full-avatar"><div class="intercom-avatar"><paper-avatar class="paper-avatar-mini" icon="social:person-outline"  label="'+ data[i].username.charAt(0).toUpperCase()+'"></paper-avatar></div></div>'
     }
     $users.html(html);
+    $('#users-avatar').html(avatar_html);
   });
 
 
