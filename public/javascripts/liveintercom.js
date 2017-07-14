@@ -6,8 +6,8 @@ $( document ).ready(function() {
   // socket.emit('subscribe');
   var c_name = getCookie('username');
   if(c_name){
-    socket.emit('subscribe',{"room" : roomID, 'username':username});
-    socket.emit('user join', {'username':username,'room': roomID}, function(data){
+    socket.emit('subscribe',{"room" : roomID, 'username':c_name});
+    socket.emit('user join', {'username':c_name,'room': roomID}, function(data){
 
     });
   }else{
