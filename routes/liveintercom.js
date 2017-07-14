@@ -132,14 +132,22 @@ router.get('/:id', function(req, res, next) {
     socket.on('user join', function (data,callback) {
       callback(true);
       // //====DB user insert==
-
+      for(var i=0;i<users.length;i++){
+        if(users[i].username == data.username ){
+          debug('same user join room：'+data.room,users);
+          return;
+        }
+      }
       socket.username = data.username;
       socket.room = data.room;
       users.push(data);//{"username" : username, "room" : roomId}
       // users.push({"username" : data.username, "room" : roomId});////TODO:所有的live用户！！！
       var roomuser =[];
+      // users = users.filter(function(item, pos) {
+      //     return users.indexOf(item) == pos;
+      // })
       for(var i=0;i<users.length;i++){
-        if(users[i].room == roomId){
+        if(users[i].room == roomId ){
           roomuser.push(users[i]);/////users[i].username
         }
       }
