@@ -115,6 +115,18 @@ router.get('/:id', function(req, res, next) {
         debug('访客进入直播间：'+data.room,users);
         socket.username = data.username;
         io.of(namespace).in(roomId).emit('users init',users);
+        
+        var roomuser =[];
+        // users = users.filter(function(item, pos) {
+        //     return users.indexOf(item) == pos;
+        // })
+        for(var i=0;i<users.length;i++){
+          if(users[i].room == roomId ){
+            roomuser.push(users[i]);/////users[i].username
+          }
+        }
+        socket.roomuser = roomuser;
+
     })
 
     socket.on('unsubscribe', function(data) { 
