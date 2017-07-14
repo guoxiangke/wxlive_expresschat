@@ -4,7 +4,12 @@ $( document ).ready(function() {
   // var socket = io('/'+pathArray[2]);//tell Socket.IO client to connect to that namespace:
   var roomID = pathArray[2];
   // socket.emit('subscribe');
-  socket.emit('subscribe',{"room" : roomID});
+  var c_name = getCookie('username');
+  if(c_name){
+    socket.emit('subscribe',{"room" : roomID,'username':c_name});
+  }else{
+    socket.emit('subscribe',{"room" : roomID});
+  }
   // //get messages history!
   // var history_url = window.location.href + '/history';
   // var history = [];
@@ -16,7 +21,6 @@ $( document ).ready(function() {
 
   socket.on('history',function(data){
     addChatHistory(data);//add remote message!
-      var c_name = getCookie('username');
       //ok!!!
       if(c_name){
         $('#user_named_join_promo').hide();

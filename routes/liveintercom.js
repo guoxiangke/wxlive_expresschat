@@ -113,6 +113,7 @@ router.get('/:id', function(req, res, next) {
     socket.on('subscribe', function(data) {
         socket.join(roomId);
         debug('访客进入直播间：'+data.room,users);
+        socket.username = data.username;
         io.of(namespace).in(roomId).emit('users init',users);
     })
 
