@@ -38,7 +38,14 @@ app.use('/l', liveintercom);//某公司的livechat.com/room/companyId/roomId
 
 app.use(express.static('public'))
 
-
+app.use(function (req, res, next) {
+    if ('/MP_verify_TneROHDiBDphZRvS.txt' == req.url) {
+        res.type('text/plain')
+        res.send("TneROHDiBDphZRvS");
+    } else {
+        next();
+    }
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
