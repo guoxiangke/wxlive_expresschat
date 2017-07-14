@@ -204,6 +204,10 @@ router.get('/:id', function(req, res, next) {
         groupName: "直播吧",
         timestamp: Date.now() / 1000 | 0
       }
+      if(!socket.username) {
+          debug('No!socket.username',msg);
+        return;
+      }
       // console.log("[DEBUG][io.sockets][message] New message '%j' from user %s(@%s)", msg, connected_user.username, connected_user.id);
 
       db.saveMessage(msg, function (err, saved) {
