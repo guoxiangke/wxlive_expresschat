@@ -114,6 +114,9 @@ router.get('/:id', function(req, res, next) {
         socket.join(roomId);
         debug('访客进入直播间：'+data.room,users);
         io.of(namespace).in(roomId).emit('users init',users);
+        if(data.username){
+          socket.username = data.username;
+        }
     })
 
     socket.on('unsubscribe', function(data) { 
