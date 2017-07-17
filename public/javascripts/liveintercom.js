@@ -4,45 +4,14 @@ $( document ).ready(function() {
   // var socket = io('/'+pathArray[2]);//tell Socket.IO client to connect to that namespace:
   var roomID = pathArray[2];
   // socket.emit('subscribe');
-  var c_name = getCookie('username');
-  if(c_name){
-    socket.emit('subscribe',{"room" : roomID, 'username':c_name});
-    socket.emit('user join', {'username':c_name,'room': roomID}, function(data){
-
-    });
-  }else{
-    socket.emit('subscribe',{"room" : roomID});
-  }
-  // //get messages history!
-  // var history_url = window.location.href + '/history';
-  // var history = [];
-  // $.ajax({url: history_url, success: function(result){
-  //     // $("#div1").html(result);
-  //     history = result;
-  //     console.log(result);
-  // }});
-
-  socket.on('history',function(data){
-    addChatHistory(data);//add remote message!
-      //ok!!!
-      if(c_name){
-        $('#user_named_join_promo').hide();
-        user_named_join_promo(c_name);
-        setUsername(c_name);
-      }
-  });
-
-
   var $messageForm  = $('#messageForm');
   var $message  = $('#message');
   var $chat  = $('#chat');
-
   var $userForm = $('#userForm');
   // var $chatPage = $('#chatPage');
-  var $loginPage = $('#loginPage');
+  // var $loginPage = $('#loginPage');
   var $username = $('#username');
   var $users = $('#users');
-
   var username;
   var $typingDiv = $('#typingDiv');
   var typing = false;
@@ -52,10 +21,35 @@ $( document ).ready(function() {
   var $inputMessage = $message;
   var $inputUsername = $username;
 
-  //auto login with username
-  if(username){
-      setUsername (username);
+  var c_name = getCookie('username');
+
+  socket.on('history',function(data){
+    addChatHistory(data);//add remote message!
+      if(c_name){
+        $('#user_named_join_promo').hide();
+        user_named_join_promo(c_name);
+      }
+  });
+
+  if(c_name){
+    $('#message').prop('disabled', false).attr('placeholder','键入文字');
+    setUsername(c_name);
+    if($('#user_named_join_promo').is(":visible")){
+        $('#user_named_join_promo').hide();
+        user_named_join_promo(c_name);
+    }
+  }else{
+    // socket.emit('subscribe',{"room" : roomID});
   }
+
+
+
+
+
+  //auto login with username
+  // if(username){
+  //     setUsername (username);
+  // }
 
   $(window).on('beforeunload', function(){
     if(username){
@@ -87,9 +81,10 @@ $( document ).ready(function() {
     //   'language':navigator.language,
     //   'userAgent':navigator.userAgent
     // }
+    socket.emit('subscribe', {'username':username,'room': roomID});
     socket.emit('user join', {'username':username,'room': roomID}, function(data){//,'navigator':nav
       if(data){
-        $loginPage.hide();
+        // $loginPage.hide();
         // $chatPage.show();//disabled input!!
         $inputMessage.focus();
       }

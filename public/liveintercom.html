@@ -161,7 +161,7 @@
               <form action="" id="messageForm">
               <div class="intercom-composer">
                 <pre><!-- react-text: 41 --><!-- /react-text --><br></pre>
-                <textarea  id="message" placeholder="Write a reply..."></textarea>
+                <textarea  id="message" placeholder="请先选择一个通知方式再输入" disabled></textarea>
                 <span></span>
                 <span></span>
                 <div class="intercom-composer-buttons">
@@ -259,7 +259,7 @@
 	      //    }
 	      // });
 
-	      $('#message').prop('disabled', true).attr('placeholder','请先选择一个通知方式再输入');
+	      // $('#message').prop('disabled', true).attr('placeholder','请先选择一个通知方式再输入');
 	      $('.intercom-conversation-footer').click(function(){
 	        if($('#message').is(":disabled")){
 	          $('#username').focus();

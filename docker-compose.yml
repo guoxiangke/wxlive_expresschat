@@ -13,6 +13,8 @@ ichat:
         - /usr/src/app/public/files
     links:
         - "dbhost"
+    ports:
+      - "3000:3000"
     environment:
         - VIRTUAL_HOST=ichat.yongbuzhixi.com
         - RDB_HOST=dbhost

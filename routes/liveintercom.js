@@ -71,9 +71,10 @@ router.get('/:id', function(req, res, next) {
     //Disconnect
     socket.on('disconnect',function(data){
       connections.splice(connections.indexOf(socket), 1);
-      debug('%s Disconnected: %s sockets connected',socket.username,connections.length);
-
-      if(!socket.username) return;
+      if(!socket.username) {
+        debug('error,no name! lne 76');
+        return;
+      }
       //DB:xxx离开了聊天室
       var msg = {
         fromType: "room_logout",
@@ -89,10 +90,11 @@ router.get('/:id', function(req, res, next) {
           debug(saved,err);
           return;
         }
-        debug('%s Disconnected: %s sockets connected',socket.username,connections.length);
-        var tmp_users = socket.roomuser;
-        tmp_users.splice(tmp_users.indexOf(socket.username), 1);
-        updateUsernames(tmp_users);
+        debug('DB:访客[%s]离开了直播间[%s],%s sockets connected',data.username,data.room,connections.length);
+        debug(users,'before users');
+        users.splice(users.indexOf(socket.username), 1);
+        debug(users,'after users');
+        updateUsernames(users);
       });
     })
 
@@ -112,15 +114,30 @@ router.get('/:id', function(req, res, next) {
     // 一个socket是否可以同时存在于几个分组，等效于一个用户会同时在几个聊天室活跃，答案是”可以“，socket.join()添加进去就可以了。官方提供了订阅模式的示例：
     socket.on('subscribe', function(data) {
         socket.join(roomId);
-        debug('访客进入直播间：'+data.room,users);
-        io.of(namespace).in(roomId).emit('users init',users);
         if(data.username){
           socket.username = data.username;
+          // var users = socket.users;
+          debug(users,'before users');
+          var is_new = true;
+          for (var i = users.length - 1; i >= 0; i--) {
+            if(users[i].username == data.username && users[i].room == data.room ) {
+              var is_new = false;
+              break;
+            }
+          }
+          if(is_new || users.length===0 ) {
+            users.push({"room" : roomId, 'username':data.username});
+          }
         }
+        debug(users,'after users');
+        io.of(namespace).in(roomId).emit('users init',users);
+        debug('访客[%s]进入直播间[%s]',data.username,data.room);
     })
 
     socket.on('unsubscribe', function(data) { 
         socket.leave(roomId);
+        debug('访客离开直播间：'+data.room,users);
+        io.of(namespace).in(roomId).emit('users init',users);
         var newusers=[];
         if(data.username){
           for (var i = users.length - 1; i >= 0; i--) {
@@ -129,31 +146,34 @@ router.get('/:id', function(req, res, next) {
           }
           users = newusers;
         }
-          debug('访客离开直播间：'+ users);
      })
 
     socket.on('user join', function (data,callback) {
       callback(true);
-      // //====DB user insert==
-      for(var i=0;i<users.length;i++){
-        if(users[i].username == data.username ){
-          debug('same user join room：'+data.room,users);
-          return;
-        }
-      }
-      socket.username = data.username;
-      socket.room = data.room;
-      users.push(data);//{"username" : username, "room" : roomId}
-      // users.push({"username" : data.username, "room" : roomId});////TODO:所有的live用户！！！
-      var roomuser =[];
-      // users = users.filter(function(item, pos) {
-      //     return users.indexOf(item) == pos;
-      // })
-      for(var i=0;i<users.length;i++){
-        if(users[i].room == roomId ){
-          roomuser.push(users[i]);/////users[i].username
-        }
-      }
+      // // //====DB user insert==
+      // // for(var i=0;i<users.length;i++){
+      // //   if(users[i].username == data.username ){
+      // //     debug('same user join room：'+data.room,users);
+      // //     return;
+      // //   }
+      // // }
+      // socket.username = data.username;
+      // socket.room = data.room;
+      // users.push(data);//{"username" : username, "room" : roomId}
+      // // users.push({"username" : data.username, "room" : roomId});////TODO:所有的live用户！！！
+      // var roomuser =[];
+      // // users = users.filter(function(item, pos) {
+      // //     return users.indexOf(item) == pos;
+      // // })
+      // for(var i=0;i<users.length;i++){
+      //   if(users[i].room == roomId ){
+      //     if(users[i].username == data.username ){
+      //       debug('same user join room：'+data.room,users);
+      //       continue;
+      //     }
+      //     roomuser.push(users[i]);/////users[i].username
+      //   }
+      // }
 	  //DB username加入了聊天室！2017-12-11
       var msg = {
         fromType: "room_login",
@@ -169,9 +189,9 @@ router.get('/:id', function(req, res, next) {
           // socket.emit('new message', {message: util.format("<em>There was an error saving your message (%s)</em>", msg.message), from: msg.from, timestamp: msg.timestamp});
           return;
         }
-        debug('new user join room：'+socket.room,roomuser);
-        socket.roomuser = roomuser;
-        updateUsernames(roomuser);
+        // debug('new user join room：'+socket.room,roomuser);
+        // socket.roomuser = roomuser;
+        // updateUsernames(roomuser);
       });
       //DB end!!!
     });
