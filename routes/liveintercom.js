@@ -61,6 +61,9 @@ router.get('/:id', function(req, res, next) {
     connections.push(socket);
     debug('Connected: %s sockets connected',connections.length);
 
+    debug(users,'init users');
+    io.of(namespace).in(roomId).emit('users init',users);
+    
     db.findMessages(30, function (err, messages) {
       if (!err && messages.length > 0) {
         socket.emit('history', messages);
@@ -210,10 +213,6 @@ router.get('/:id', function(req, res, next) {
       });
       //DB end!!!
     });
-
-    function is_db_exsits(username){
-      return false;
-    }
 
 
     function updateUsernames(roomuser){

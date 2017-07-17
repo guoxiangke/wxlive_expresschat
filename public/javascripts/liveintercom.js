@@ -161,7 +161,7 @@ $( document ).ready(function() {
 
   //get all users
   socket.on('users init', function(data){
-    // console.log('users update');
+    console.log('users update init',data);
     $('#users_count').text(data.length);
     var html = '';
     var avatar_html='';
