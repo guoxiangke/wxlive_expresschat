@@ -69,10 +69,10 @@ router.get('/:id', function(req, res, next) {
 
 
     //Disconnect
-    socket.on('disconnect',function(data){
+    socket.on('disconnect',function(){
       connections.splice(connections.indexOf(socket), 1);
       if(!socket.username) {
-        debug('error,no name! lne 76');
+        // debug('return socket',socket);
         return;
       }
       //DB:xxx离开了聊天室
@@ -90,9 +90,17 @@ router.get('/:id', function(req, res, next) {
           debug(saved,err);
           return;
         }
-        debug('DB:访客[%s]离开了直播间[%s],%s sockets connected',data.username,data.room,connections.length);
         debug(users,'before users');
-        users.splice(users.indexOf(socket.username), 1);
+        debug('DB:访客[%s]离开了直播间[%s],%s sockets left',socket.username,roomId,connections.length);
+        // users.splice(users.indexOf(socket.username), 1);
+        var newusers=[];
+        if(socket.username){
+          for (var i = users.length - 1; i >= 0; i--) {
+            if(users[i].username == socket.username) continue;
+              newusers.push(users[i]);
+          }
+          users = newusers;
+        }
         debug(users,'after users');
         updateUsernames(users);
       });
@@ -129,15 +137,18 @@ router.get('/:id', function(req, res, next) {
             users.push({"room" : roomId, 'username':data.username});
           }
         }
-        debug(users,'after users');
         io.of(namespace).in(roomId).emit('users init',users);
         debug('访客[%s]进入直播间[%s]',data.username,data.room);
+        debug(users,'after users');
     })
 
     socket.on('unsubscribe', function(data) { 
         socket.leave(roomId);
-        debug('访客离开直播间：'+data.room,users);
-        io.of(namespace).in(roomId).emit('users init',users);
+
+
+        debug('访客[%s]unsubscribe直播间[%s]',data.username,data.room);
+        debug(users,'before users');
+        // users.splice(users.indexOf(socket.username), 1);
         var newusers=[];
         if(data.username){
           for (var i = users.length - 1; i >= 0; i--) {
@@ -146,6 +157,10 @@ router.get('/:id', function(req, res, next) {
           }
           users = newusers;
         }
+        debug(users,'after users');
+
+        io.of(namespace).in(roomId).emit('users init',users);
+
      })
 
     socket.on('user join', function (data,callback) {
