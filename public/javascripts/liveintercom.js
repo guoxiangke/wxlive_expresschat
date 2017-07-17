@@ -131,7 +131,7 @@ $( document ).ready(function() {
 
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message',function(data){
-    console.log('new message',data);
+    // console.log('new message',data);
     addChatMessage(data);//add remote message!
   });
 
@@ -204,13 +204,13 @@ $( document ).ready(function() {
 
   // Whenever the server emits 'typing', show the typing message
   socket.on('typing', function (data) {
-    console.log('typing',data);
+    // console.log('typing',data);
     addChatTyping(data);
   });
 
   // Whenever the server emits 'stop typing', kill the typing message
   socket.on('stop typing', function (data) {
-    console.log('stop typing',data);
+    // console.log('stop typing',data);
     removeChatTyping(data);
   });
 
@@ -223,7 +223,6 @@ $( document ).ready(function() {
   }
   // Removes the visual chat typing message
   function removeChatTyping (data) {
-    console.log('removeChatTyping');
     getTypingMessages(data).fadeOut(function () {
       $(this).remove();
     });
