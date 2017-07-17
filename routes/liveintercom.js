@@ -62,8 +62,8 @@ router.get('/:id', function(req, res, next) {
     debug('Connected: %s sockets connected',connections.length);
 
     debug(users,'init users');
-    io.of(namespace).in(roomId).emit('users init',users);
-    
+    io.of(namespace).emit('users init',users);
+
     db.findMessages(30, function (err, messages) {
       if (!err && messages.length > 0) {
         socket.emit('history', messages);
@@ -140,7 +140,7 @@ router.get('/:id', function(req, res, next) {
             users.push({"room" : roomId, 'username':data.username});
           }
         }
-        io.of(namespace).in(roomId).emit('users init',users);
+        io.of(namespace).in(roomId).emit('users update',users);
         debug('访客[%s]进入直播间[%s]',data.username,data.room);
         debug(users,'after users');
     })
@@ -162,7 +162,7 @@ router.get('/:id', function(req, res, next) {
         }
         debug(users,'after users');
 
-        io.of(namespace).in(roomId).emit('users init',users);
+        io.of(namespace).in(roomId).emit('users update',users);
 
      })
 

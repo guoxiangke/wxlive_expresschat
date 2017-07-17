@@ -160,8 +160,16 @@ $( document ).ready(function() {
   }
 
   //get all users
+
   socket.on('users init', function(data){
-    console.log('users update init',data);
+    uses_update(data);
+  });
+  //TODO append!!!
+  socket.on('users update', function(data){
+    uses_update(data);
+  });
+
+  function uses_update(data){
     $('#users_count').text(data.length);
     var html = '';
     var avatar_html='';
@@ -171,7 +179,7 @@ $( document ).ready(function() {
     }
     $users.html(html);
     $('#users-avatar').html(avatar_html);
-  });
+  }
 
 
   // Keyboard events begin
