@@ -36,7 +36,7 @@ router.param('id', function(req, res, next, id) {
     // req.room_id = req.namespace + '/' + id;
     // // TOdo validation on name here
 
-    debug('============a room quest begin!===============');
+    debug('[INFO]============a room quest begin!===============');
     req.room_id = id;
     var roomId = id;
     // go to the next thing
@@ -44,6 +44,7 @@ router.param('id', function(req, res, next, id) {
 });
 
 var users = [];//all users in all rooms /:id
+var usersonline = {};//TODO
 var connections = [];//all connections in all rooms
 
 router.get('/:id', function(req, res, next) {
@@ -59,31 +60,34 @@ router.get('/:id', function(req, res, next) {
   // Chatroom
   io.of(namespace).once('connection', function(socket){
     connections.push(socket);
-    debug('Connected: %s sockets connected',connections.length);
+    debug("[DEBUG][io.sockets][once][connection.length]", connections.length);
 
-    debug(users,'init users');
+    var connected_user = {};
     io.of(namespace).emit('users init',users);
+    debug("[ACTION][io.sockets][EMIT][users init]", users);
 
     db.findMessages(30, function (err, messages) {
       if (!err && messages.length > 0) {
         socket.emit('history', messages);
+        debug("[ACTION][io.sockets][EMIT][history][counts]",messages.length);
       }
     });
 
 
     //Disconnect
-    socket.on('disconnect',function(){
+    socket.on('disconnect',function(data){
       connections.splice(connections.indexOf(socket), 1);
-      if(!socket.username) {
-        // debug('return socket',socket);
+      debug("[DEBUG][io.sockets][on][disconnect] 访客离开====>", connected_user);
+      if(!connected_user.username) {
+        debug("[DEBUG][io.sockets][on][disconnect] 访客离开无名字", data);
         return;
       }
       //DB:xxx离开了聊天室
       var msg = {
         fromType: "room_logout",
         messageType: "text",
-        message: socket.username+" 离开了直播间",//login 进入房间 logout 离开房间 正常消息 message @消息 at
-        NickName: socket.username, //todo 使用uid！ from
+        message: connected_user.username+" 离开了直播间",//login 进入房间 logout 离开房间 正常消息 message @消息 at
+        NickName: connected_user.username, //todo 使用uid！ from
         room_id : roomId,
         groupName: "直播吧",
         timestamp: Date.now() / 1000 | 0
@@ -93,18 +97,17 @@ router.get('/:id', function(req, res, next) {
           debug(saved,err);
           return;
         }
-        debug(users,'before users');
-        debug('DB:访客[%s]离开了直播间[%s],%s sockets left',socket.username,roomId,connections.length);
-        // users.splice(users.indexOf(socket.username), 1);
+        debug("[DEBUG][io.sockets][on][disconnect][before users]", users);
+        // users.splice(users.indexOf(connected_user.username), 1);
         var newusers=[];
-        if(socket.username){
+        if(connected_user.username){
           for (var i = users.length - 1; i >= 0; i--) {
-            if(users[i].username == socket.username) continue;
+            if(users[i].username == connected_user.username) continue;
               newusers.push(users[i]);
           }
           users = newusers;
         }
-        debug(users,'after users');
+        debug("[DEBUG][io.sockets][on][disconnect][after users]", users);
         updateUsernames(users);
       });
     })
@@ -123,35 +126,35 @@ router.get('/:id', function(req, res, next) {
     // socket.emit('rooms', io.of('/').adapter.rooms);
 
     // 一个socket是否可以同时存在于几个分组，等效于一个用户会同时在几个聊天室活跃，答案是”可以“，socket.join()添加进去就可以了。官方提供了订阅模式的示例：
-    socket.on('subscribe', function(data) {
+    socket.on('subscribe', function(user) {
+        debug('[INFO][io.sockets][on][subscribe]访客进入直播间======>');
+        debug("[DEBUG][io.sockets][on][subscribe]", user);
         socket.join(roomId);
-        if(data.username){
-          socket.username = data.username;
-          // var users = socket.users;
-          debug(users,'before users');
+        if(user.username){
+          // socket.username = user.username;
+          connected_user = user;
+          debug("[DEBUG][io.sockets][on][subscribe][before users]", users);
           var is_new = true;
           for (var i = users.length - 1; i >= 0; i--) {
-            if(users[i].username == data.username && users[i].room == data.room ) {
+            if(users[i].username == user.username && users[i].room == user.room ) {
               var is_new = false;
               break;
             }
           }
           if(is_new || users.length===0 ) {
-            users.push({"room" : roomId, 'username':data.username});
+            users.push({"room" : roomId, 'username':user.username});
           }
         }
         io.of(namespace).in(roomId).emit('users update',users);
-        debug('访客[%s]进入直播间[%s]',data.username,data.room);
-        debug(users,'after users');
+        debug("[DEBUG][io.sockets][on][subscribe][after users]", users);
+        debug("[ACTION][io.sockets][on][subscribe][EMIT][users update]");
     })
 
     socket.on('unsubscribe', function(data) { 
         socket.leave(roomId);
-
-
-        debug('访客[%s]unsubscribe直播间[%s]',data.username,data.room);
-        debug(users,'before users');
-        // users.splice(users.indexOf(socket.username), 1);
+        debug('[INFO]访客unsubscribe直播间',data);
+        debug("[DEBUG][io.sockets][on][unsubscribe][before users]", users);
+        // users.splice(users.indexOf(connected_user.username), 1);
         var newusers=[];
         if(data.username){
           for (var i = users.length - 1; i >= 0; i--) {
@@ -160,9 +163,9 @@ router.get('/:id', function(req, res, next) {
           }
           users = newusers;
         }
-        debug(users,'after users');
-
         io.of(namespace).in(roomId).emit('users update',users);
+        debug("[DEBUG][io.sockets][on][unsubscribe][after users]", users);
+        debug("[ACTION][io.sockets][on][unsubscribe][EMIT][users update]");
 
      })
 
@@ -175,7 +178,7 @@ router.get('/:id', function(req, res, next) {
       // //     return;
       // //   }
       // // }
-      // socket.username = data.username;
+      // connected_user.username = data.username;
       // socket.room = data.room;
       // users.push(data);//{"username" : username, "room" : roomId}
       // // users.push({"username" : data.username, "room" : roomId});////TODO:所有的live用户！！！
@@ -196,8 +199,8 @@ router.get('/:id', function(req, res, next) {
       var msg = {
         fromType: "room_login",
         messageType: "text",
-        message: socket.username+" 进入了直播间！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
-        NickName: socket.username, //todo 使用uid！ from
+        message: connected_user.username+" 进入了直播间！",//login 进入房间 logout 离开房间 正常消息 message @消息 at
+        NickName: connected_user.username, //todo 使用uid！ from
         room_id : roomId, //room_id
         groupName: "直播吧",
         timestamp: Date.now() / 1000 | 0,
@@ -224,11 +227,13 @@ router.get('/:id', function(req, res, next) {
     }
     // when the client emits 'new message', this listens and executes
     socket.on('send message', function (data) {
+      debug("[INFO][io.sockets][on][send message][current user]", connected_user);
+      debug("[INFO][io.sockets][on][send message][data]", data);
       // // we tell the client to execute 'new message'
       // // io.sockets.emit('new message', {//socket.broadcast.emit
       // // io.of(namespace).in(roomId).emit('new message', {//socket.broadcast.emit
       // socket.broadcast.to(roomId).emit('new message', {
-      //   username: socket.username,
+      //   username: connected_user.username,
       //   message: data
       // });
       //DB
@@ -236,17 +241,16 @@ router.get('/:id', function(req, res, next) {
         messageType: "text",
         fromType: "liveroom",
         message: data,
-        NickName: socket.username, //todo 使用uid！ from
+        NickName: connected_user.username, //todo 使用uid！ from
         room_id : roomId, //room_id
         groupName: "直播吧",
         timestamp: Date.now() / 1000 | 0
       }
-      if(!socket.username) {
-          debug('No!socket.username',msg);
+      // debug("[DEBUG][status][msgtosend]", msg);
+      if(!connected_user.username) {
+          debug("[Error][io.sockets][on][send message][no username]", msg);
         return;
       }
-      // console.log("[DEBUG][io.sockets][message] New message '%j' from user %s(@%s)", msg, connected_user.username, connected_user.id);
-
       db.saveMessage(msg, function (err, saved) {
         if (err || !saved) {
           debug(saved,err);
@@ -254,10 +258,13 @@ router.get('/:id', function(req, res, next) {
           return;
         }
         // socket.emit('new message', msg);
-        socket.broadcast.to(roomId).emit('new message', {
-              username: socket.username,
+        var msg = {
+              username: connected_user.username,
               message: data
-        });
+        };
+
+        socket.broadcast.to(roomId).emit('new message', msg);
+        debug("[ACTION][io.sockets][on][send message][EMIT]", msg);
         // Send message to everyone.
         // socket.broadcast.emit('new message', msg);
       });
@@ -267,14 +274,14 @@ router.get('/:id', function(req, res, next) {
     // when the client emits 'typing', we broadcast it to others
       socket.on('typing', function () {
         socket.broadcast.to(roomId).emit('typing', {
-          username: socket.username
+          username: connected_user.username
         });
       });
 
     // when the client emits 'stop typing', we broadcast it to others
       socket.on('stop typing', function () {
         socket.broadcast.to(roomId).emit('stop typing', {
-          username: socket.username
+          username: connected_user.username
         });
       });
     });
