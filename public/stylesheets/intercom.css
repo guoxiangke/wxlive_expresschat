@@ -14,24 +14,24 @@
 
 @font-face {
     font-family: intercom-font;
-    src: url(https://js.intercomcdn.com/fonts/proximanova-regular.a7942249.woff) format("woff")
+    src: url(../fonts/proximanova-regular.a7942249.woff) format("woff")
 }
 
 @font-face {
     font-family: intercom-font;
-    src: url(https://js.intercomcdn.com/fonts/proximanova-semibold.46e3f047.woff) format("woff");
+    src: url(../fonts/proximanova-semibold.46e3f047.woff) format("woff");
     font-weight: 700
 }
 
 @font-face {
     font-family: intercom-font;
-    src: url(https://js.intercomcdn.com/fonts/proximanova-regular-italic.053a1112.woff) format("woff");
+    src: url(../fonts/proximanova-regular-italic.053a1112.woff) format("woff");
     font-style: italic
 }
 
 @font-face {
     font-family: intercom-font;
-    src: url(https://js.intercomcdn.com/fonts/proximanova-semibold-italic.660bf63e.woff) format("woff");
+    src: url(../fonts/proximanova-semibold-italic.660bf63e.woff) format("woff");
     font-weight: 700;
     font-style: italic
 }
@@ -610,7 +610,7 @@ body>.intercom-container {
 #intercom-container .intercom-composer-popover-spinner,
 #intercom-container .intercom-conversation-body-spinner,
 #intercom-container .intercom-conversations-spinner {
-    background-image: url(https://js.intercomcdn.com/images/spinner.4d295ead.png);
+    background-image: url(../images/spinner.4d295ead.png);
     background-size: 28px 28px;
     background-repeat: no-repeat;
     display: block;
@@ -628,7 +628,7 @@ body>.intercom-container {
     #intercom-container .intercom-composer-popover-spinner,
     #intercom-container .intercom-conversation-body-spinner,
     #intercom-container .intercom-conversations-spinner {
-        background-image: url(https://js.intercomcdn.com/images/spinner@2x.2b560838.png)
+        background-image: url(../images/spinner@2x.2b560838.png)
     }
 }
 
@@ -826,7 +826,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-notifications-dismiss-button-icon {
-    background-image: url(https://js.intercomcdn.com/images/dismiss.8422c636.png);
+    background-image: url(../images/dismiss.8422c636.png);
     background-size: 8px 8px;
     width: 8px;
     height: 8px;
@@ -840,7 +840,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-notifications-dismiss-button-icon {
-        background-image: url(https://js.intercomcdn.com/images/dismiss@2x.e13c7ceb.png)
+        background-image: url(../images/dismiss@2x.e13c7ceb.png)
     }
 }
 
@@ -1037,7 +1037,7 @@ body>.intercom-container {
 #intercom-container .intercom-post-close,
 #intercom-container .intercom-post-close:hover {
     background-position: 50%;
-    background-image: url(https://js.intercomcdn.com/images/close.c662f9ab.png);
+    background-image: url(../images/close.c662f9ab.png);
     background-size: 12px 12px;
     background-repeat: no-repeat
 }
@@ -1048,7 +1048,7 @@ body>.intercom-container {
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-post-close,
     #intercom-container .intercom-post-close:hover {
-        background-image: url(https://js.intercomcdn.com/images/close@2x.7ae99936.png)
+        background-image: url(../images/close@2x.7ae99936.png)
     }
 }
 
@@ -1134,7 +1134,7 @@ body>.intercom-container {
 #intercom-container .intercom-note-close,
 #intercom-container .intercom-note-close:hover {
     background-position: 50%;
-    background-image: url(https://js.intercomcdn.com/images/close.c662f9ab.png);
+    background-image: url(../images/close.c662f9ab.png);
     background-size: 12px 12px;
     background-repeat: no-repeat
 }
@@ -1145,7 +1145,7 @@ body>.intercom-container {
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-note-close,
     #intercom-container .intercom-note-close:hover {
-        background-image: url(https://js.intercomcdn.com/images/close@2x.7ae99936.png)
+        background-image: url(../images/close@2x.7ae99936.png)
     }
 }
 
@@ -1345,7 +1345,7 @@ body>.intercom-container {
     border-radius: 100px;
     cursor: pointer;
     background-position: calc(100% - 19px) 50%;
-    background-image: url(https://js.intercomcdn.com/images/dismiss.8422c636.png);
+    background-image: url(../images/dismiss.8422c636.png);
     background-size: 8px 8px;
     background-repeat: no-repeat
 }
@@ -1355,7 +1355,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-chat-dismiss-button span {
-        background-image: url(https://js.intercomcdn.com/images/dismiss@2x.e13c7ceb.png)
+        background-image: url(../images/dismiss@2x.e13c7ceb.png)
     }
 }
 
@@ -1376,7 +1376,7 @@ body>.intercom-container {
     height: 12px;
     padding: 10px;
     background-position: 50%;
-    background-image: url(https://js.intercomcdn.com/images/close.c662f9ab.png);
+    background-image: url(../images/close.c662f9ab.png);
     background-size: 12px 12px;
     background-repeat: no-repeat
 }
@@ -1386,7 +1386,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-chat-dismiss-button-mobile {
-        background-image: url(https://js.intercomcdn.com/images/close@2x.7ae99936.png)
+        background-image: url(../images/close@2x.7ae99936.png)
     }
 }
 
@@ -1620,7 +1620,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-header-buttons-back {
-    background-image: url(https://js.intercomcdn.com/images/back-icon.d97c845a.png);
+    background-image: url(../images/back-icon.d97c845a.png);
     background-size: 8px 13px;
     background-repeat: no-repeat;
     position: absolute;
@@ -1633,7 +1633,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-header-buttons-back {
-        background-image: url(https://js.intercomcdn.com/images/back-icon@2x.f1c28c99.png)
+        background-image: url(../images/back-icon@2x.f1c28c99.png)
     }
 }
 
@@ -1643,7 +1643,7 @@ body>.intercom-container {
 
 #intercom-container .intercom-header-buttons-close {
     z-index: 2147483000;
-    background-image: url(https://js.intercomcdn.com/images/messenger-close.c30463a5.png);
+    background-image: url(../images/messenger-close.c30463a5.png);
     background-size: 14px 14px;
     background-repeat: no-repeat;
     position: absolute;
@@ -1657,7 +1657,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-header-buttons-close {
-        background-image: url(https://js.intercomcdn.com/images/messenger-close@2x.c1cb8613.png)
+        background-image: url(../images/messenger-close@2x.c1cb8613.png)
     }
 }
 
@@ -1761,7 +1761,7 @@ body>.intercom-container {
 
 #intercom-container .intercom-conversations-body-empty {
     height: 100%;
-    background-image: url(https://js.intercomcdn.com/images/dummy-rows.7d6bd61f.png);
+    background-image: url(../images/dummy-rows.7d6bd61f.png);
     background-size: 360px 512px;
     background-position: top;
     background-repeat: no-repeat
@@ -1772,7 +1772,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversations-body-empty {
-        background-image: url(https://js.intercomcdn.com/images/dummy-rows@2x.54938c3a.png)
+        background-image: url(../images/dummy-rows@2x.54938c3a.png)
     }
 }
 
@@ -1851,7 +1851,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-conversations-new-conversation-button span {
-    background-image: url(https://js.intercomcdn.com/images/new-conversation.40b12105.png);
+    background-image: url(../images/new-conversation.40b12105.png);
     background-repeat: no-repeat;
     background-position: 0;
     background-size: 15px 14px;
@@ -1864,7 +1864,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversations-new-conversation-button span {
-        background-image: url(https://js.intercomcdn.com/images/new-conversation@2x.de1ac608.png)
+        background-image: url(../images/new-conversation@2x.de1ac608.png)
     }
 }
 
@@ -1958,7 +1958,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-conversation-background-1 {
-    background-image: url(https://js.intercomcdn.com/images/background-1.1829ebd9.png);
+    background-image: url(../images/background-1.1829ebd9.png);
     background-size: 417px 417px;
     background-repeat: repeat
 }
@@ -1968,12 +1968,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-1 {
-        background-image: url(https://js.intercomcdn.com/images/background-1@2x.aea5e218.png)
+        background-image: url(../images/background-1@2x.aea5e218.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-2 {
-    background-image: url(https://js.intercomcdn.com/images/background-2.fe21b9a2.png);
+    background-image: url(../images/background-2.fe21b9a2.png);
     background-size: 664px 664px;
     background-repeat: repeat
 }
@@ -1983,12 +1983,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-2 {
-        background-image: url(https://js.intercomcdn.com/images/background-2@2x.d21cbef6.png)
+        background-image: url(../images/background-2@2x.d21cbef6.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-3 {
-    background-image: url(https://js.intercomcdn.com/images/background-3.58150222.png);
+    background-image: url(../images/background-3.58150222.png);
     background-size: 421px 183px;
     background-repeat: repeat
 }
@@ -1998,12 +1998,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-3 {
-        background-image: url(https://js.intercomcdn.com/images/background-3@2x.20888a24.png)
+        background-image: url(../images/background-3@2x.20888a24.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-4 {
-    background-image: url(https://js.intercomcdn.com/images/background-4.fef3e3fd.png);
+    background-image: url(../images/background-4.fef3e3fd.png);
     background-size: 1081px 1075px;
     background-repeat: repeat
 }
@@ -2013,12 +2013,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-4 {
-        background-image: url(https://js.intercomcdn.com/images/background-4@2x.daccb3ac.png)
+        background-image: url(../images/background-4@2x.daccb3ac.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-5 {
-    background-image: url(https://js.intercomcdn.com/images/background-5.38ace5f4.png);
+    background-image: url(../images/background-5.38ace5f4.png);
     background-size: 352px 390px;
     background-repeat: repeat
 }
@@ -2028,12 +2028,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-5 {
-        background-image: url(https://js.intercomcdn.com/images/background-5@2x.1aac51b7.png)
+        background-image: url(../images/background-5@2x.1aac51b7.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-6 {
-    background-image: url(https://js.intercomcdn.com/images/background-6.7e4a21c1.png);
+    background-image: url(../images/background-6.7e4a21c1.png);
     background-size: 789px 904px;
     background-repeat: repeat
 }
@@ -2043,12 +2043,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-6 {
-        background-image: url(https://js.intercomcdn.com/images/background-6@2x.f5234953.png)
+        background-image: url(../images/background-6@2x.f5234953.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-7 {
-    background-image: url(https://js.intercomcdn.com/images/background-7.e1c5bb79.png);
+    background-image: url(../images/background-7.e1c5bb79.png);
     background-size: 69px 60px;
     background-repeat: repeat
 }
@@ -2058,12 +2058,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-7 {
-        background-image: url(https://js.intercomcdn.com/images/background-7@2x.a1c30eb5.png)
+        background-image: url(../images/background-7@2x.a1c30eb5.png)
     }
 }
 
 #intercom-container .intercom-conversation-background-8 {
-    background-image: url(https://js.intercomcdn.com/images/background-8.ca9658da.png);
+    background-image: url(../images/background-8.ca9658da.png);
     background-size: 833px 878px;
     background-repeat: repeat
 }
@@ -2073,7 +2073,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-background-8 {
-        background-image: url(https://js.intercomcdn.com/images/background-8@2x.27b7646c.png)
+        background-image: url(../images/background-8@2x.27b7646c.png)
     }
 }
 
@@ -2222,7 +2222,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-conversation-summary-user-icon {
-    background-image: url(https://js.intercomcdn.com/images/conversation-icon.61d0df81.png);
+    background-image: url(../images/conversation-icon.61d0df81.png);
     background-size: 16px 14px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -2239,7 +2239,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-summary-user-icon {
-        background-image: url(https://js.intercomcdn.com/images/conversation-icon@2x.56f8b79e.png)
+        background-image: url(../images/conversation-icon@2x.56f8b79e.png)
     }
 }
 
@@ -2274,7 +2274,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-conversation-part-failed .intercom-conversation-part-metadata {
-    background-image: url(https://js.intercomcdn.com/images/warning-icon.c1fb6306.png);
+    background-image: url(../images/warning-icon.c1fb6306.png);
     background-size: 11px 11px;
     padding-left: 15px;
     background-position: left 7px;
@@ -2287,7 +2287,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-conversation-part-failed .intercom-conversation-part-metadata {
-        background-image: url(https://js.intercomcdn.com/images/warning-icon@2x.b69fd84a.png)
+        background-image: url(../images/warning-icon@2x.b69fd84a.png)
     }
 }
 
@@ -2333,7 +2333,7 @@ body>.intercom-container {
     border-radius: 17px;
     background-color: hsla(0, 0%, 100%, .7);
     opacity: .7;
-    background-image: url(https://js.intercomcdn.com/images/intercom-link-logo.dcb0e594.png);
+    background-image: url(../images/intercom-link-logo.dcb0e594.png);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     background-position: 20px
@@ -2344,7 +2344,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container a.intercom-link {
-        background-image: url(https://js.intercomcdn.com/images/intercom-link-logo@2x.ecef5c55.png)
+        background-image: url(../images/intercom-link-logo@2x.ecef5c55.png)
     }
 }
 
@@ -2560,7 +2560,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-notification-channels-input-submit-icon {
-    background-image: url(https://js.intercomcdn.com/images/back-icon.d97c845a.png);
+    background-image: url(../images/back-icon.d97c845a.png);
     background-size: 8px 13px;
     background-repeat: no-repeat;
     opacity: 1;
@@ -2574,12 +2574,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-notification-channels-input-submit-icon {
-        background-image: url(https://js.intercomcdn.com/images/back-icon@2x.f1c28c99.png)
+        background-image: url(../images/back-icon@2x.f1c28c99.png)
     }
 }
 
 #intercom-container .intercom-notification-channels-input-valid-icon {
-    background-image: url(https://js.intercomcdn.com/images/check.fa48bd36.png);
+    background-image: url(../images/check.fa48bd36.png);
     background-size: 18px 14px;
     background-repeat: no-repeat;
     opacity: 0;
@@ -2593,7 +2593,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-notification-channels-input-valid-icon {
-        background-image: url(https://js.intercomcdn.com/images/check@2x.cde0a65e.png)
+        background-image: url(../images/check@2x.cde0a65e.png)
     }
 }
 
@@ -3031,7 +3031,7 @@ body>.intercom-container {
 
 #intercom-container .intercom-admin-profile-full-social-account-twitter {
     height: 13px;
-    background-image: url(https://js.intercomcdn.com/images/twitter-social-icon.c2b68d4c.png);
+    background-image: url(../images/twitter-social-icon.c2b68d4c.png);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     opacity: .7
@@ -3042,7 +3042,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-admin-profile-full-social-account-twitter {
-        background-image: url(https://js.intercomcdn.com/images/twitter-social-icon@2x.d20abeca.png)
+        background-image: url(../images/twitter-social-icon@2x.d20abeca.png)
     }
 }
 
@@ -3051,7 +3051,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-admin-profile-full-social-account-linkedin {
-    background-image: url(https://js.intercomcdn.com/images/linkedin-social-icon.7f15ae6c.png);
+    background-image: url(../images/linkedin-social-icon.7f15ae6c.png);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     opacity: .7
@@ -3062,7 +3062,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-admin-profile-full-social-account-linkedin {
-        background-image: url(https://js.intercomcdn.com/images/linkedin-social-icon@2x.44b3f430.png)
+        background-image: url(../images/linkedin-social-icon@2x.44b3f430.png)
     }
 }
 
@@ -3176,7 +3176,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-composer-send-button {
-    background-image: url(https://js.intercomcdn.com/images/send-button.9039edc2.png);
+    background-image: url(../images/send-button.9039edc2.png);
     background-size: 16px 17px;
     background-repeat: no-repeat;
     right: 30px;
@@ -3189,7 +3189,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-composer-send-button {
-        background-image: url(https://js.intercomcdn.com/images/send-button@2x.fa523e1e.png)
+        background-image: url(../images/send-button@2x.fa523e1e.png)
     }
 }
 
@@ -3198,7 +3198,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-composer-upload-button {
-    background-image: url(https://js.intercomcdn.com/images/upload-button.8b4cd3fb.png);
+    background-image: url(../images/upload-button.8b4cd3fb.png);
     background-size: 14px 16px;
     background-repeat: no-repeat;
     right: 30px;
@@ -3211,7 +3211,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-composer-upload-button {
-        background-image: url(https://js.intercomcdn.com/images/upload-button@2x.778e88c4.png)
+        background-image: url(../images/upload-button@2x.778e88c4.png)
     }
 }
 
@@ -3220,7 +3220,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-composer-emoji-button {
-    background-image: url(https://js.intercomcdn.com/images/emoji-button.114cd116.png);
+    background-image: url(../images/emoji-button.114cd116.png);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     right: 60px;
@@ -3233,7 +3233,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-composer-emoji-button {
-        background-image: url(https://js.intercomcdn.com/images/emoji-button@2x.8c829a1b.png)
+        background-image: url(../images/emoji-button@2x.8c829a1b.png)
     }
 }
 
@@ -3243,7 +3243,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-composer-gif-button {
-    background-image: url(https://js.intercomcdn.com/images/gif-button.509e7fcd.png);
+    background-image: url(../images/gif-button.509e7fcd.png);
     background-size: 24px 16px;
     background-repeat: no-repeat;
     right: 95px;
@@ -3256,7 +3256,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-composer-gif-button {
-        background-image: url(https://js.intercomcdn.com/images/gif-button@2x.4e83c34f.png)
+        background-image: url(../images/gif-button@2x.4e83c34f.png)
     }
 }
 
@@ -3341,7 +3341,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-emoji-sub-icon {
-    background-image: url(https://js.intercomcdn.com/images/emoji-spritemap-16.bc0d768e.png);
+    background-image: url(../images/emoji-spritemap-16.bc0d768e.png);
     background-size: 464px 464px;
     background-repeat: no-repeat;
     position: relative;
@@ -3354,12 +3354,12 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-emoji-sub-icon {
-        background-image: url(https://js.intercomcdn.com/images/emoji-spritemap-32.93b83e6d.png)
+        background-image: url(../images/emoji-spritemap-32.93b83e6d.png)
     }
 }
 
 #intercom-container .intercom-reaction-picker .intercom-emoji-sub-icon {
-    background-image: url(https://js.intercomcdn.com/images/emoji-spritemap-32.93b83e6d.png);
+    background-image: url(../images/emoji-spritemap-32.93b83e6d.png);
     background-size: 928px 928px;
     background-repeat: no-repeat
 }
@@ -3369,7 +3369,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-reaction-picker .intercom-emoji-sub-icon {
-        background-image: url(https://js.intercomcdn.com/images/emoji-spritemap-32.93b83e6d.png)
+        background-image: url(../images/emoji-spritemap-32.93b83e6d.png)
     }
 }
 
@@ -3945,7 +3945,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-emoji-picker-image {
-    background-image: url(https://js.intercomcdn.com/images/emoji-spritemap-16.bc0d768e.png);
+    background-image: url(../images/emoji-spritemap-16.bc0d768e.png);
     background-size: 464px 464px;
     background-repeat: no-repeat;
     border: 10px solid;
@@ -3960,7 +3960,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-emoji-picker-image {
-        background-image: url(https://js.intercomcdn.com/images/emoji-spritemap-32.93b83e6d.png)
+        background-image: url(../images/emoji-spritemap-32.93b83e6d.png)
     }
 }
 
@@ -4217,7 +4217,7 @@ body>.intercom-container {
 #intercom-container .intercom-borderless-dismiss-button span {
     padding-right: 16px;
     padding-left: 16px;
-    background-image: url(https://js.intercomcdn.com/images/dismiss.8422c636.png);
+    background-image: url(../images/dismiss.8422c636.png);
     background-size: 8px 8px;
     background-repeat: no-repeat;
     opacity: .8
@@ -4228,7 +4228,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-borderless-dismiss-button span {
-        background-image: url(https://js.intercomcdn.com/images/dismiss@2x.e13c7ceb.png)
+        background-image: url(../images/dismiss@2x.e13c7ceb.png)
     }
 }
 
@@ -4302,7 +4302,7 @@ body>.intercom-container {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-image: url(https://js.intercomcdn.com/images/close.c662f9ab.png);
+    background-image: url(../images/close.c662f9ab.png);
     background-size: 10px 10px;
     background-repeat: no-repeat
 }
@@ -4312,7 +4312,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-dismiss-button {
-        background-image: url(https://js.intercomcdn.com/images/close@2x.7ae99936.png)
+        background-image: url(../images/close@2x.7ae99936.png)
     }
 }
 
@@ -4376,7 +4376,7 @@ body>.intercom-container {
 #intercom-container .intercom-install-card-illustration-javascript {
     height: 150px;
     width: 157px;
-    background-image: url(https://js.intercomcdn.com/images/javascript.045c08c8.png);
+    background-image: url(../images/javascript.045c08c8.png);
     background-size: 157px 150px;
     background-repeat: no-repeat
 }
@@ -4386,14 +4386,14 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-illustration-javascript {
-        background-image: url(https://js.intercomcdn.com/images/javascript@2x.cae40736.png)
+        background-image: url(../images/javascript@2x.cae40736.png)
     }
 }
 
 #intercom-container .intercom-install-card-illustration-success {
     height: 150px;
     width: 154px;
-    background-image: url(https://js.intercomcdn.com/images/intercom-check.e585c156.png);
+    background-image: url(../images/intercom-check.e585c156.png);
     background-size: 154px 150px;
     background-repeat: no-repeat
 }
@@ -4403,14 +4403,14 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-illustration-success {
-        background-image: url(https://js.intercomcdn.com/images/intercom-check@2x.04a0b7cf.png)
+        background-image: url(../images/intercom-check@2x.04a0b7cf.png)
     }
 }
 
 #intercom-container .intercom-install-card-illustration-mismatch {
     height: 131px;
     width: 170px;
-    background-image: url(https://js.intercomcdn.com/images/browser-hidden.aba8b4b3.png);
+    background-image: url(../images/browser-hidden.aba8b4b3.png);
     background-size: 170px 131px;
     background-repeat: no-repeat
 }
@@ -4420,7 +4420,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-illustration-mismatch {
-        background-image: url(https://js.intercomcdn.com/images/browser-hidden@2x.e2ce5cf1.png)
+        background-image: url(../images/browser-hidden@2x.e2ce5cf1.png)
     }
 }
 
@@ -4442,7 +4442,7 @@ body>.intercom-container {
     height: 30px;
     width: 118px;
     margin-left: 55px;
-    background-image: url(https://js.intercomcdn.com/images/intercom-logo.ac7de1d5.png);
+    background-image: url(../images/intercom-logo.ac7de1d5.png);
     background-size: 118px 30px;
     background-repeat: no-repeat
 }
@@ -4452,7 +4452,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-logo {
-        background-image: url(https://js.intercomcdn.com/images/intercom-logo@2x.1cdfee98.png)
+        background-image: url(../images/intercom-logo@2x.1cdfee98.png)
     }
 }
 
@@ -4478,7 +4478,7 @@ body>.intercom-container {
 #intercom-container .intercom-install-card-icon-visible {
     height: 9px;
     width: 16px;
-    background-image: url(https://js.intercomcdn.com/images/icon-visible.cf75ceef.png);
+    background-image: url(../images/icon-visible.cf75ceef.png);
     background-size: 16px 9px;
     background-repeat: no-repeat
 }
@@ -4488,14 +4488,14 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-icon-visible {
-        background-image: url(https://js.intercomcdn.com/images/icon-visible@2x.6b527b2c.png)
+        background-image: url(../images/icon-visible@2x.6b527b2c.png)
     }
 }
 
 #intercom-container .intercom-install-card-icon-invisible {
     height: 14px;
     width: 16px;
-    background-image: url(https://js.intercomcdn.com/images/icon-invisible.26537d60.png);
+    background-image: url(../images/icon-invisible.26537d60.png);
     background-size: 16px 14px;
     background-repeat: no-repeat
 }
@@ -4505,7 +4505,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-icon-invisible {
-        background-image: url(https://js.intercomcdn.com/images/icon-invisible@2x.5e85897b.png)
+        background-image: url(../images/icon-invisible@2x.5e85897b.png)
     }
 }
 
@@ -4537,7 +4537,7 @@ body>.intercom-container {
 #intercom-container .intercom-install-card-messenger-invisible {
     border: 1px dashed #8ca2b6;
     pointer-events: none;
-    background-image: url(https://js.intercomcdn.com/images/launcher-skeleton-icon-happy.8380178a.png);
+    background-image: url(../images/launcher-skeleton-icon-happy.8380178a.png);
     background-size: 24px 25px;
     background-repeat: no-repeat
 }
@@ -4547,7 +4547,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-install-card-messenger-invisible {
-        background-image: url(https://js.intercomcdn.com/images/launcher-skeleton-icon-happy@2x.a34ee15d.png)
+        background-image: url(../images/launcher-skeleton-icon-happy@2x.a34ee15d.png)
     }
 }
 
@@ -4555,7 +4555,7 @@ body>.intercom-container {
     width: 16px;
     height: 16px;
     background-position: 0 0;
-    background-image: url(https://js.intercomcdn.com/images/flags.3af314e4.png);
+    background-image: url(../images/flags.3af314e4.png);
     background-size: 240px 240px;
     background-repeat: no-repeat
 }
@@ -4565,7 +4565,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-flag {
-        background-image: url(https://js.intercomcdn.com/images/flags@2x.03f85e2d.png)
+        background-image: url(../images/flags@2x.03f85e2d.png)
     }
 }
 
@@ -5584,7 +5584,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-composer-popover-input {
-    background-image: url(https://js.intercomcdn.com/images/search.7ae40c25.png);
+    background-image: url(../images/search.7ae40c25.png);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     background-position: 0 12px;
@@ -5600,7 +5600,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-composer-popover-input {
-        background-image: url(https://js.intercomcdn.com/images/search@2x.9f02b9f3.png)
+        background-image: url(../images/search@2x.9f02b9f3.png)
     }
 }
 
@@ -6438,7 +6438,7 @@ body>.intercom-container {
 #intercom-container .intercom-note .intercom-block-attachment-list,
 #intercom-container .intercom-post-card .intercom-block-attachment-list,
 #intercom-container .intercom-post .intercom-block-attachment-list {
-    background-image: url(https://js.intercomcdn.com/images/attachment-icon.35cbfe8a.png);
+    background-image: url(../images/attachment-icon.35cbfe8a.png);
     background-size: 17px 18px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -6461,7 +6461,7 @@ body>.intercom-container {
     #intercom-container .intercom-note .intercom-block-attachment-list,
     #intercom-container .intercom-post-card .intercom-block-attachment-list,
     #intercom-container .intercom-post .intercom-block-attachment-list {
-        background-image: url(https://js.intercomcdn.com/images/attachment-icon@2x.98dfd51f.png)
+        background-image: url(../images/attachment-icon@2x.98dfd51f.png)
     }
 }
 
@@ -6479,7 +6479,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-comment-single .intercom-block-attachment-list>a {
-    background-image: url(https://js.intercomcdn.com/images/attachment-icon.35cbfe8a.png);
+    background-image: url(../images/attachment-icon.35cbfe8a.png);
     background-size: 17px 18px;
     background-repeat: no-repeat;
     position: relative;
@@ -6499,7 +6499,7 @@ body>.intercom-container {
 (min-device-pixel-ratio:1.3),
 (min-resolution:1.3dppx) {
     #intercom-container .intercom-comment-single .intercom-block-attachment-list>a {
-        background-image: url(https://js.intercomcdn.com/images/attachment-icon@2x.98dfd51f.png)
+        background-image: url(../images/attachment-icon@2x.98dfd51f.png)
     }
 }
 
@@ -7913,7 +7913,7 @@ screen and (max-width:450px) {
 
 @media only screen and (max-device-width:667px) {
     #intercom-container .intercom-composer-send-button {
-        background-image: url(https://js.intercomcdn.com/images/mobile-send.25dfd680.png);
+        background-image: url(../images/mobile-send.25dfd680.png);
         background-size: 14px 14px;
         background-repeat: no-repeat;
         background-position: 11.5px;
@@ -7935,7 +7935,7 @@ only screen and (max-device-width:667px) and (min--moz-device-pixel-ratio:1.3),
 only screen and (max-device-width:667px) and (min-device-pixel-ratio:1.3),
 only screen and (max-device-width:667px) and (min-resolution:1.3dppx) {
     #intercom-container .intercom-composer-send-button {
-        background-image: url(https://js.intercomcdn.com/images/mobile-send@2x.5a60f4ee.png)
+        background-image: url(../images/mobile-send@2x.5a60f4ee.png)
     }
 }
 
