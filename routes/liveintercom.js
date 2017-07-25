@@ -235,7 +235,7 @@ router.get('/:id', function(req, res, next) {
             username: connected_user.username,
             message: data
       };
-      if(lastmessage == msg_emit){
+      if(lastmessage.username === msg_emit.username && lastmessage.message === msg_emit.message){
         debug("[REEOR][io.sockets][on][send message][data]", "重复发送！");
         return;
       }else{
