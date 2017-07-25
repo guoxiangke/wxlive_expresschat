@@ -56,6 +56,7 @@ router.get('/:id', function(req, res, next) {
   var roomId = req.params.id;
   var namespace = '/liveintercom';
 
+  var lastmessage = {};//android微信多条消息！
 
   // Chatroom
   io.of(namespace).once('connection', function(socket){
@@ -229,6 +230,17 @@ router.get('/:id', function(req, res, next) {
     socket.on('send message', function (data) {
       debug("[INFO][io.sockets][on][send message][current user]", connected_user);
       debug("[INFO][io.sockets][on][send message][data]", data);
+
+      var msg_emit = {
+            username: connected_user.username,
+            message: data
+      };
+      if(lastmessage == msg_emit){
+        debug("[REEOR][io.sockets][on][send message][data]", "重复发送！");
+        return;
+      }else{
+        lastmessage = msg_emit;
+      }
       // // we tell the client to execute 'new message'
       // // io.sockets.emit('new message', {//socket.broadcast.emit
       // // io.of(namespace).in(roomId).emit('new message', {//socket.broadcast.emit
@@ -258,15 +270,10 @@ router.get('/:id', function(req, res, next) {
           return;
         }
         // socket.emit('new message', msg);
-        var msg = {
-              username: connected_user.username,
-              message: data
-        };
-
-        socket.broadcast.to(roomId).emit('new message', msg);
-        debug("[ACTION][io.sockets][on][send message][EMIT]", msg);
+        socket.broadcast.to(roomId).emit('new message', msg_emit);
+        debug("[ACTION][io.sockets][on][send message][EMIT]", msg_emit);
         // Send message to everyone.
-        // socket.broadcast.emit('new message', msg);
+        // socket.broadcast.emit('new message', msg_emit);
       });
     });
 
