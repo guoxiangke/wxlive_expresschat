@@ -16,7 +16,7 @@ ichat:
     ports:
       - "3000:3000"
     environment:
-        - VIRTUAL_HOST=ichat.yongbuzhixi.com
+        - VIRTUAL_HOST=ichat.aws.yongbuzhixi.com
         - RDB_HOST=dbhost
         - RDB_PORT=28015
         - RDB_DB=ichat
@@ -31,7 +31,7 @@ dbhost:
         - "80"
     command: ["rethinkdb", "--bind", "all", "--http-port", "80"] ##--no-http-admin 
     environment:
-        - VIRTUAL_HOST=rethinkdb.yongbuzhixi.com
+        - VIRTUAL_HOST=rethinkdb.aws.yongbuzhixi.com
 #################
 storage-db: #debian:jessie
     image: debian:jessie
