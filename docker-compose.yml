@@ -16,8 +16,8 @@ ichat:
     ports:
       - "3000:3000"
     environment:
-        - VIRTUAL_HOST=www.51chat.net,ichat.aws.yongbuzhixi.com
-        - LETSENCRYPT_HOST=www.51chat.net,ichat.aws.yongbuzhixi.com
+        - VIRTUAL_HOST=live.51chat.net,ichat.aws.yongbuzhixi.com
+        - LETSENCRYPT_HOST=live.51chat.net,ichat.aws.yongbuzhixi.com
         - LETSENCRYPT_EMAIL=dale.tel@139.com
         - RDB_HOST=dbhost
         - RDB_PORT=28015
